@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './login.css';
 
-// const baseURL = sessionStorage.getItem('apipathurl');
-
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,60 +11,45 @@ const Login = ({ onLogin }) => {
     event.preventDefault();
 
     try {
-      setIsLoading(true); // Set loading state to true
-      const response = await fetch('https://project1-pi-three.vercel.app/api/user', {
-  // Rest of the code
-      method: 'POST',
+      setIsLoading(true);
+
+      const response = await fetch('https://project1-pi-three.vercel.app/api/user/login', {
+        method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.status, response.statusText);
-      // const response = await fetch(`${baseURL}/user/login`, {
-      //   method: 'POST',
-      //   body: JSON.stringify({ email, password }),
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      // });
 
       const data = await response.json();
 
       if (response.ok) {
-        // if (email === data.email && password === data.password && role === data.role) {
-        onLogin(data.token, data.username, data.role); // Call the onLogin prop with the necessary data
-
-        // Store the login data in local storage
+        onLogin(data.token, data.username, data.role);
         localStorage.setItem('token', data.token);
         localStorage.setItem('username', data.username);
         localStorage.setItem('role', data.role);
 
         if (data.role == '1' || data.role == '2') {
-          // Set alert to true
-          alert('login successfully');
+          alert('Login successful');
         } else {
-          // Set alert to false
-          alert('invalid email or password');
+          alert('Invalid email or password');
         }
-
       } else {
-        setErrorMessage('Invalid email or password.'); // Set the error message
+        setErrorMessage('Invalid email or password.');
         alert('Login failed! Invalid email or password.');
       }
     } catch (error) {
-      setErrorMessage('An error occurred during login.'); // Set the error message
+      setErrorMessage('An error occurred during login.');
       console.error('Error:', error);
     } finally {
-      setIsLoading(false); // Set loading state back to false after the request completes
+      setIsLoading(false);
     }
   };
-
 
   return (
     <div className="login-page">
       <h1>Login Page</h1>
-      {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display the error message if it exists */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
         <label>
           <br />
@@ -80,9 +63,9 @@ const Login = ({ onLogin }) => {
         </label>
         <br />
         {isLoading ? (
-          <div>Loading...</div> // Display the loader while isLoading is true
+          <div>Loading...</div>
         ) : (
-          <button type="submit">Log in</button> // Show the login button when not loading
+          <button type="submit">Log in</button>
         )}
       </form>
     </div>
