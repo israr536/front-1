@@ -14,7 +14,7 @@ const Login = ({ onLogin }) => {
 
     try {
       setIsLoading(true); // Set loading state to true
-      const response = await fetch('/api/user/login', {
+      const response = await fetch('https://project1-pi-three.vercel.app/api/user/login', {
   // Rest of the code
       method: 'POST',
         body: JSON.stringify({ email, password }),
