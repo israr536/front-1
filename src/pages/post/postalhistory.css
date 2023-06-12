@@ -1,0 +1,11 @@
+.postalhistory{
+    width:90%;
+    margin:40px auto;
+    overflow:auto;
+}
+
+.postalhistory::-webkit-scrollbar{
+    width:0px;
+}
+
+

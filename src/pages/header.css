@@ -1,0 +1,40 @@
+header {
+  background-color:rgb(68, 68, 107);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.logo {
+  font-size: 24px;
+  font-family: sans-serif;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 10px;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.main-nav ul li {
+  margin-right: 10px;
+  font-family: sans-serif;
+  align-items: center;
+}
+
+nav.main-nav ul li a {
+  color: white ;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+.menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+

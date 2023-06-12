@@ -1,0 +1,117 @@
+/* Styles for the address form page */
+
+/* Center the content */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  /* Form styles */
+  form {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .post-form{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    /* border:1px solid red; */
+    /* width:max-content; */
+    max-width:650px;
+
+    justify-content: center;
+    margin:0 auto;
+  }
+
+  .post-form .common-fields {
+    display: flex;
+    /* width:100%; */
+    justify-content: space-between;
+  }
+
+
+  .post-form fieldset{
+      padding:0 !important;
+      border:1px solid transparent;
+
+  }
+
+  .post-form fieldset legend{
+    font-size:21px !important;
+  }
+
+  .sender{
+    margin-right:30px;
+  }
+
+.submit-box{
+  width:100%;
+}
+  .post-form .submit-button{
+    width:30%;
+  
+    display: flex;
+    justify-content: center;
+  }
+
+  .post-form .submit-button {
+    margin: 0 auto;
+    margin-top:20px;
+
+    
+    
+  }
+  
+  .delivery-status{
+    width: 317px !important;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border:1px solid #ccc !important;
+
+
+}
+  h1 {
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  h2 {
+    margin: 20px 0;
+    font-size:50px;
+  }
+  
+  label {
+
+    display: block;
+  }
+  
+  input[type='text'] {
+    width: 300px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 2px solid black;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color:rgb(68, 68, 107);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color:rgb(68, 68, 107);
+  }
+  

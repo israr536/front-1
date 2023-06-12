@@ -1,0 +1,48 @@
+/* UserList.css */
+.user-list{
+    width:90%;
+    margin:40px auto;
+
+}
+.user-list-container {
+    max-width: 600px;
+    margin:20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border:2px solid red;
+  }
+  
+  .user-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .user-list-table {
+    width: 100%;
+    border:1px solid red;
+
+  }
+  
+  .user-list-table th,
+  .user-list-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 20px;
+    align-items: center;
+  }
+  
+  .user-list-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-list-table td {
+    text-align: center;
+  }
+  .Role{
+    font-weight: bold;
+    /* font-size: 20px; */
+    
+  }
