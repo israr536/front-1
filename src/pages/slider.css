@@ -2,7 +2,7 @@
 .slider{
     height:calc(100vh - 140px);
     width: auto;
-    background-image:linear-gradient(115deg, rgb(148 135 129 / 97%), rgba(70, 30, 116, 0.7)),url('C:\Users\Israr\Desktop\Postal tracking App\postal\src\images\the-old-willingdon-post-office-h74k1225rjfde3jv.jpg');
+    background-image:linear-gradient(115deg, rgb(148 135 129 / 97%), rgba(70, 30, 116, 0.7)),url('C:\Users\Israr\Desktop\Postal tracking App\postal\src\images\postoffice.jpg');
     background-size:cover;
     position:relative;
 }
