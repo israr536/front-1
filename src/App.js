@@ -10,6 +10,7 @@ import OrderUpdate from '../src/delivery partner/DeliveryPartner';
 import CustomerHistory from './pages/post/PostHistory';
 import CreateOrder from './createorder/CreateOrder';
 import UserList from './userslist/UserList';
+// import cors from 'react';
 
 // sessionStorage.setItem("apipathurl","http://localhost:3000/api")
   //  sessionStorage.setItem("apipathurl","https://postaltrackingapp.onrender.com/api")
@@ -39,7 +40,7 @@ const App = () => {
   }, []);
 
   const handleLogin = (token, username, role) => {
-    console.log(role);
+     console.log(role);
     localStorage.setItem('token', token);
     localStorage.setItem('username', username);
     localStorage.setItem('role', role);

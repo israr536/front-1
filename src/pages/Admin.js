@@ -16,7 +16,7 @@ import CreateOrder from '../createorder/CreateOrder';
 
 
 
-const baseURL = sessionStorage.getItem('apipathurl');
+// const baseURL = sessionStorage.getItem('apipathurl');
 // const { sessionStorage } = window;
 
 const Header = () => {

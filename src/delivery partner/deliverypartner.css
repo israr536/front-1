@@ -82,4 +82,9 @@ li {
   margin-bottom:10px;
 }
 
+.order-history-header{
+  display:flex;
+  justify-content: flex-end;
+}
+
   

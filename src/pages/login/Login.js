@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './login.css';
 
-const baseURL = sessionStorage.getItem('apipathurl');
+// const baseURL = sessionStorage.getItem('apipathurl');
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -14,13 +14,15 @@ const Login = ({ onLogin }) => {
 
     try {
       setIsLoading(true); // Set loading state to true
-      const response = await fetch(`http://localhost:3000/api/user/login`, {
-        method: 'POST',
+      const response = await fetch('https://project1-9xbqeh31n-israr536.vercel.app/http://localhost:3000/api/user/login', {
+  // Rest of the code
+      method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
+      console.log(response.status, response.statusText);
       // const response = await fetch(`${baseURL}/user/login`, {
       //   method: 'POST',
       //   body: JSON.stringify({ email, password }),

@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './deliverypartner.css';
 import { Link } from 'react-router-dom';
 
-const { sessionStorage } = window;
+// const { sessionStorage } = window;
 
 const Header = () => {
   const navigate = useNavigate(); // Hook for navigation
@@ -216,9 +216,14 @@ const OrderUpdate = () => {
           <div className='order'>
             <h2>Order History</h2>
             <button onClick={() => setShowHistory(true)}>Show Order History</button>
-            {showHistory && (
+          
+          </div>
+        </div> {/* end deliverye content */}
+          
+          {/* show order history */}
+          {showHistory && (
               <div className='order-history-popup'>
-                <div className='order-history-header'>
+                <div className='order-history-header' >
                   <span className='close-button' onClick={() => setShowHistory(false)}>×</span>
                 </div>
                 <table>
@@ -257,8 +262,6 @@ const OrderUpdate = () => {
                 />
               </div>
             )}
-          </div>
-        </div>
       </div>
     </>
   );
