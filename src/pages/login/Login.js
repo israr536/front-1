@@ -13,7 +13,7 @@ const Login = ({ onLogin }) => {
     try {
       setIsLoading(true);
 
-      const response = await fetch('https://project1-pi-three.vercel.app/api/user/login', {
+      const response = await fetch(`https://project1-pi-three.vercel.app/api/user/login`, {
         method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: {
@@ -22,6 +22,7 @@ const Login = ({ onLogin }) => {
       });
 
       const data = await response.json();
+      console.log(response);
 
       if (response.ok) {
         onLogin(data.token, data.username, data.role);
