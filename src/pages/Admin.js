@@ -113,7 +113,8 @@ const Header = () => {
       };
 
       const formattedDate = currentDate.toLocaleString('en-IN', options);
-      const response = await fetch(`http://localhost:3000/api/order/createorder`, {
+      // const response = await fetch(`http://localhost:3000/api/order/createorder`
+      const response = await fetch(`${baseURL}/order/createorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -371,7 +372,8 @@ const AdminPage = () => {
   const fetchOrders = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`http://localhost:3000/api/order/history`);
+      //const response = await fetch(`http://localhost:3000/api/order/history`);
+      const response = await fetch(`${baseURL}/order/history`);
       const data = await response.json();
   
       const currentOrder = data.orderHistory.find(order => order.status === 'Generated');

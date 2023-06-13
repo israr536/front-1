@@ -3,6 +3,8 @@ import './userlist.css';
 import Pagination from '../pagination/Pagination';
 import { Paginate } from '../pagination/Paginate';
 
+const baseURL = sessionStorage.getItem('apipathurl')
+
 const UserList = () => {
   const [userList, setUserList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +22,8 @@ const UserList = () => {
 
   const fetchUserList = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/user/getusers');
+      // const response = await fetch('http://localhost:3000/api/user/getusers');
+      const response = await fetch(`${baseURL}/user/getusers`);
       const data = await response.json();
   
       if (response.ok) {
@@ -39,7 +42,8 @@ const UserList = () => {
 
   const deleteUser = async (userId) => {
     try {
-      await fetch(`http://localhost:3000/api/user/${userId}`, {
+      // await fetch(`http://localhost:3000/api/user/${userId}`
+      await fetch(`${baseURL}/user/${userId}`, {
         method: 'DELETE',
       });
       fetchUserList(); // Fetch the updated user list after deletion

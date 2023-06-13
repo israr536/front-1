@@ -40,7 +40,8 @@ const Register = () => {
 
     try {
       setIsLoading(true); // Set loading state to true
-      const response = await fetch(`http://localhost:3000/api/user/register`, {
+      // const response = await fetch(`http://localhost:3000/api/user/register`
+      const response = await fetch(`${baseURL}/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

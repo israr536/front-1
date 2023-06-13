@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from "react-router-dom";
 
-// const baseURL = sessionStorage.getItem("apipathurl");
+const baseURL = sessionStorage.getItem("apipathurl");
         
   const CreateOrder = () =>{
     const [orders, setOrders] = useState([]);
@@ -91,7 +91,8 @@ const open = Boolean(anchorEl);
           //     pincode,
           //   }),
           // });
-           const response = await fetch('http://localhost:3000/api/order/createorder', {
+          // const response = await fetch('http://localhost:3000/api/order/createorder'
+           const response = await fetch(`${baseURL}/order/createorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

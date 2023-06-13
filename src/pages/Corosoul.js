@@ -30,8 +30,8 @@ const fetchOrderById = async (orderID) => {
 try {
 setShowOrderHistory(false);
 setIsLoading(true);
-const response = await fetch(`http://localhost:3000/api/order/${orderID}`);
-// const response = await fetch(`${baseURL}/order/${orderID}`);
+// const response = await fetch(`http://localhost:3000/api/order/${orderID}`);
+const response = await fetch(`${baseURL}/order/${orderID}`);
 const data = await response.json();
 setOrderHistory(data.order);
 setShowOrderHistory(true);
