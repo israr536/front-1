@@ -22,9 +22,10 @@ const UserList = () => {
     try {
       const response = await fetch('http://localhost:3000/api/user/getusers');
       const data = await response.json();
-
+  
       if (response.ok) {
-        setUserList(data.userList);
+        const reversedUserList = data.userList.reverse(); // Reverse the user list array
+        setUserList(reversedUserList);
       } else {
         console.error(data.message);
       }
@@ -34,6 +35,7 @@ const UserList = () => {
       setIsLoading(false);
     }
   };
+  
 
   const deleteUser = async (userId) => {
     try {

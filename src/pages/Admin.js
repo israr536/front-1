@@ -16,7 +16,7 @@ import CreateOrder from '../createorder/CreateOrder';
 
 
 
-// const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem('apipathurl');
 // const { sessionStorage } = window;
 
 const Header = () => {
@@ -59,35 +59,35 @@ const Header = () => {
     navigate('/login');
   };
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
+  // useEffect(() => {
+  //   fetchOrders();
+  // }, []);
 
-  const fetchOrders = async () => {
-    try {
-      setIsLoading(true); // Set loading state to true
-      const response = await fetch(`http://localhost:3000/api/order/history`);
-      // const response = await fetch(`${baseURL}/order/history`);
-      const data = await response.json();
+  // const fetchOrders = async () => {
+  //   try {
+  //     setIsLoading(true); // Set loading state to true
+  //     const response = await fetch(`http://localhost:3000/api/order/history`);
+  //     // const response = await fetch(`${baseURL}/order/history`);
+  //     const data = await response.json();
   
-      // Get the currently generated order
-      const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
+  //     // Get the currently generated order
+  //     const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
   
-      // Sort the orders based on the date in descending order, with the currently generated order at the top
-      const sortedOrders = data.orderHistory
-        .filter(order => order.status !== 'Generated') // Exclude the currently generated order from the sorting process
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
+  //     // Sort the orders based on the date in descending order, with the currently generated order at the top
+  //     const sortedOrders = data.orderHistory
+  //       .filter(order => order.status !== 'Generated') // Exclude the currently generated order from the sorting process
+  //       .sort((a, b) => new Date(b.date) - new Date(a.date));
   
-      // Prepend the currently generated order at the beginning of the sorted orders array
-      sortedOrders.unshift(currentOrder);
+  //     // Prepend the currently generated order at the beginning of the sorted orders array
+  //     sortedOrders.unshift(currentOrder);
   
-      setOrders(sortedOrders);
-    } catch (error) {
-      console.error('Failed to fetch orders:', error);
-    } finally {
-      setIsLoading(false); // Set loading state back to false after fetching orders
-    }
-  };
+  //     setOrders(sortedOrders);
+  //   } catch (error) {
+  //     console.error('Failed to fetch orders:', error);
+  //   } finally {
+  //     setIsLoading(false); // Set loading state back to false after fetching orders
+  //   }
+  // };
   
   
 
@@ -369,40 +369,37 @@ const AdminPage = () => {
   }, []);
 
   const fetchOrders = async () => {
-  try {
-    setIsLoading(true); // Set loading state to true
-    const response = await fetch(`http://localhost:3000/api/order/history`);
-    // const response = await fetch(`${baseURL}/order/history`);
-    const data = await response.json();
-
-    // Get the currently generated order
-    const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
-
-    // Sort the orders based on date and time in descending order, with the currently generated order at the top
-    const sortedOrders = data.orderHistory
-      .filter(order => order.status !== 'Generated') // Exclude the currently generated order from the sorting process
-      .sort((a, b) => {
-        const dateComparison = new Date(b.date) - new Date(a.date); // Compare dates
-        if (dateComparison !== 0) {
-          return dateComparison; // If dates are different, return the date comparison result
-        }
-        // If dates are the same, compare times
-        return new Date(b.time) - new Date(a.time);
-      });
-
-    // Prepend the currently generated order at the beginning of the sorted orders array, if it exists
-    if (currentOrder) {
-      sortedOrders.unshift(currentOrder);
+    try {
+      setIsLoading(true);
+      const response = await fetch(`http://localhost:3000/api/order/history`);
+      const data = await response.json();
+  
+      const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
+  
+      const sortedOrders = data.orderHistory
+        .filter(order => order.status !== 'Generated')
+        .sort((a, b) => {
+          const dateComparison = new Date(b.date) - new Date(a.date);
+          if (dateComparison !== 0) {
+            return dateComparison;
+          }
+          return new Date(b.time) - new Date(a.time);
+        });
+  
+      if (currentOrder) {
+        sortedOrders.unshift(currentOrder);
+      }
+  
+      const reversedOrders = sortedOrders.reverse(); // Reverse the sorted orders array
+  
+      setOrders(reversedOrders);
+    } catch (error) {
+      console.error('Failed to fetch orders:', error);
+    } finally {
+      setIsLoading(false);
     }
-
-    setOrders(sortedOrders);
-  } catch (error) {
-    console.error('Failed to fetch orders:', error);
-  } finally {
-    setIsLoading(false); // Set loading state back to false after fetching orders
-  }
-};
-
+  };
+  
 
 
   // useEffect(() => {
@@ -599,7 +596,7 @@ const AdminPage = () => {
                 <th>OrderID</th>
                 <th>Status</th>
                 <th>Date</th>
-                <th>Time</th>
+                {/* <th>Time</th> */}
                 <th>Location</th>
                 <th> Receiver Mobile Number</th>
                 <th>Receiver Address</th>
@@ -612,7 +609,7 @@ const AdminPage = () => {
                   <td>{order.orderID}</td>
                   <td>{order.status}</td>
                   <td>{order.date}</td>
-                  <td>{order.time}</td>
+                  {/* <td>{order.time}</td> */}
                   <td>{order.location}</td>
                   <td>{order.mobilenumber}</td>
                   <td>{order.address}</td>

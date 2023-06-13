@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from "react-router-dom";
 
-const baseURL = sessionStorage.getItem("apipathurl");
+// const baseURL = sessionStorage.getItem("apipathurl");
         
   const CreateOrder = () =>{
     const [orders, setOrders] = useState([]);
@@ -20,7 +20,7 @@ const baseURL = sessionStorage.getItem("apipathurl");
     const [showForm, setShowForm] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-const [anchorEl, setAnchorEl] = useState('');
+    const [anchorEl, setAnchorEl] = useState('');
     
 
 const open = Boolean(anchorEl);
@@ -35,27 +35,27 @@ const open = Boolean(anchorEl);
   };
 
 
-    useEffect(() => {
-        fetchOrders();
-      }, []);
+    // useEffect(() => {
+    //     fetchOrders();
+    //   }, []);
     
-      const fetchOrders = async () => {
-        try {
-          setIsLoading(true); // Set loading state to true
+    //   const fetchOrders = async () => {
+    //     try {
+    //       setIsLoading(true); // Set loading state to true
     
-          const response = await fetch(`${baseURL}/order/history`);
-          const data = await response.json();
-          setOrders(data.orderHistory);
-        } catch (error) {
-          console.error('Failed to fetch orders:', error);
-        } finally {
-          setIsLoading(false); // Set loading state back to false after fetching orders
-        }
-      };
+    //       const response = await fetch('http://localhost:3000/api/order/history');
+    //       const data = await response.json();
+    //       setOrders(data.orderHistory);
+    //     } catch (error) {
+    //       console.error('Failed to fetch orders:', error);
+    //     } finally {
+    //       setIsLoading(false); // Set loading state back to false after fetching orders
+    //     }
+    //   };
     
       const createOrder = async () => {
     
-        if (!orderID || !status || ! date|| !time || !location || !mobilenumber || !address || !pincode) {
+        if (!orderID || !status || ! date||  !location || !mobilenumber || !address || !pincode) {
           // Display an alert if any field is left vacant
           alert('Please fill in all fields');
           return;
@@ -91,7 +91,7 @@ const open = Boolean(anchorEl);
           //     pincode,
           //   }),
           // });
-           const response = await fetch(`http://localhost:3000/api/order/createorder`, {
+           const response = await fetch('http://localhost:3000/api/order/createorder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const open = Boolean(anchorEl);
           orderID,
           status,
           date: formattedDate,
-          time,
+          // time,
           location,
           mobilenumber,
           address,
@@ -215,14 +215,14 @@ const open = Boolean(anchorEl);
                       dateFormat="yyyy-MM-dd"
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label>Time:</label>
                     <input
                       type="text"
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
                     />
-                  </div>
+                  </div> */}
                   <div>
                     <label>Location:</label>
                     <input

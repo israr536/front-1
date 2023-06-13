@@ -116,35 +116,33 @@ const OrderUpdate = () => {
 
   const fetchOrderHistory = async () => {
     try {
-     const response = await axios.post('http://localhost:3000/api/update/history')
-      // const response = await axios.post(`${baseURL}/update/history`);
+      const response = await axios.post('http://localhost:3000/api/update/history');
       const data = response.data;
   
-      // Get the currently generated order
       const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
   
-      // Sort the order history based on date and time in descending order, with the currently generated order at the top
       const sortedOrderHistory = data.orderHistory
-        .filter(order => order.status !== 'Generated') // Exclude the currently generated order from the sorting process
+        .filter(order => order.status !== 'Generated')
         .sort((a, b) => {
-          const dateComparison = new Date(b.date) - new Date(a.date); // Compare dates
+          const dateComparison = new Date(b.date) - new Date(a.date);
           if (dateComparison !== 0) {
-            return dateComparison; // If dates are different, return the date comparison result
+            return dateComparison;
           }
-          // If dates are the same, compare times
           return new Date(b.time) - new Date(a.time);
         });
   
-      // Prepend the currently generated order at the beginning of the sorted order history array, if it exists
       if (currentOrder) {
         sortedOrderHistory.unshift(currentOrder);
       }
   
-      setOrderHistory(sortedOrderHistory);
+      const reversedOrderHistory = sortedOrderHistory.reverse(); // Reverse the sorted order history array
+  
+      setOrderHistory(reversedOrderHistory);
     } catch (error) {
       console.error(error);
     }
   };
+  
   
   useEffect(() => {
     fetchOrderHistory();
@@ -198,12 +196,12 @@ const OrderUpdate = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <input
+          {/* <input
             type='text'
             placeholder='time'
             value={time}
             onChange={(e) => setTime(e.target.value)}
-          />
+          /> */}
           <input
             type='text'
             placeholder='Location'
@@ -232,7 +230,7 @@ const OrderUpdate = () => {
                       <th>Order ID</th>
                       <th>Status</th>
                       <th>Date</th>
-                      <th>Time</th>
+                      {/* <th>Time</th> */}
                       <th>Location</th>
                     <th>Receiver Mobile number</th>
                     <th>Receiver Address</th>
@@ -245,7 +243,7 @@ const OrderUpdate = () => {
                         <td>{order.orderID}</td>
                         <td>{order.status}</td>
                         <td>{order.date}</td>
-                        <td>{order.time}</td>
+                        {/* <td>{order.time}</td> */}
                         <td>{order.location}</td>
                         <td>{order.mobilenumber}</td>
                         <td>{order.address}</td>

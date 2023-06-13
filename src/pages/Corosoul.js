@@ -77,7 +77,7 @@ return (
 <th>Order ID</th>
 <th>Status</th>
 <th>Date</th>
-<th>Time</th>
+{/* <th>Time</th> */}
 <th>Location</th>
 </tr>
 </thead>
@@ -86,7 +86,7 @@ return (
 <td>{orderHistory.orderID}</td>
 <td>{orderHistory.status}</td>
 <td>{orderHistory.date}</td>
-<td>{orderHistory.time}</td>
+{/* <td>{orderHistory.time}</td> */}
 <td>{orderHistory.location}</td>
 </tr>
 </tbody>
