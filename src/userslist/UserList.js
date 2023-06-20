@@ -11,7 +11,6 @@ const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-
   const navigate = useNavigate(); // Use useNavigate instead of withRouter
 
 
