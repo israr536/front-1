@@ -6,7 +6,7 @@ import './slider.css';
 import img from "../images/post.jpg"
 // import Footer from "../Footer";
 
-const baseURL = sessionStorage.getItem('apipathurl')
+const baseURL = sessionStorage.getItem("apipathurl")
 
 const Slider = () => {
   const [orderHistory, setOrderHistory] = useState({});

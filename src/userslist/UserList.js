@@ -4,7 +4,7 @@ import Pagination from '../pagination/Pagination';
 import { Paginate } from '../pagination/Paginate';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const baseURL = sessionStorage.getItem('apipathurl')
+const baseURL = sessionStorage.getItem("apipathurl")
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);

@@ -2,7 +2,7 @@ import React from 'react';
 import './resetpassword.css'
 import { useState } from "react";
 
-const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem("apipathurl");
 
 const ResetPasswordPage = () => {
     const [userId, setUserId] = useState('');

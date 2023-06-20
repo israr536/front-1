@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './post.css';
 
-const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem("apipathurl");
 
 
 // const CustomerHistory = () => {

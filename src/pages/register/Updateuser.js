@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import './updateuser.css';
 
-const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem("apipathurl");
 
 const UpdateUserForm = () => {
     const [userId, setUserId] = useState('');

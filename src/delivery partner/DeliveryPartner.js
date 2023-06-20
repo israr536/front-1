@@ -9,7 +9,7 @@ import './deliverypartner.css';
 import { Link } from 'react-router-dom';
 
 
-const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem("apipathurl");
 // const { sessionStorage } = window;
 
 const Header = () => {

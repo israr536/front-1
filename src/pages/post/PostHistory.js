@@ -4,7 +4,7 @@ import { Paginate } from '../../pagination/Paginate';
 import { Link } from 'react-router-dom';
 import './postalhistory.css';
 
-const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem("apipathurl");
 // console.log(baseURL)
 
 const CustomerHistory = () => {

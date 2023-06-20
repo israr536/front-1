@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './register.css';
 
-const baseURL = sessionStorage.getItem('apipathurl');
+const baseURL = sessionStorage.getItem("apipathurl");
 
 const Register = () => {
   const [username, setUsername] = useState('');
