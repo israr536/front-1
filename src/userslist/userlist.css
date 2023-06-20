@@ -21,7 +21,7 @@
   
   .user-list-table {
     width: 100%;
-    border:1px solid red;
+    /* border:1px solid red; */
 
   }
   
@@ -40,6 +40,9 @@
   
   .user-list-table td {
     text-align: center;
+  }
+  .user-list-table table tbody td button{
+    margin-right:10px;
   }
   .Role{
     font-weight: bold;

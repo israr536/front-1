@@ -10,6 +10,11 @@ import OrderUpdate from '../src/delivery partner/DeliveryPartner';
 import CustomerHistory from './pages/post/PostHistory';
 import CreateOrder from './createorder/CreateOrder';
 import UserList from './userslist/UserList';
+import ResetPasswordPage from './pages/register/ResetPassword';
+import UpdateUserForm from './pages/register/Updateuser';
+import Agent from './agent/Agent';
+import { Update } from '@mui/icons-material';
+import {  useLocation } from 'react-router-dom';
 // import cors from 'react';
 
  sessionStorage.setItem("apipathurl","http://localhost:3000/api")
@@ -29,12 +34,12 @@ const App = () => {
       setIsLoggedIn(true);
 
       // Navigate to the appropriate page based on the user role
-      if (role == '1') {
+      if (role === 'admin') {
         navigate("/admin");
-      } else if (role == '2') {
+      } else if (role === 'deliverypartner') {
         navigate("/delivery");
-      } else if (role == '3') {
-        navigate("/");
+      } else if (role === 'agent') {
+        navigate("/agent");
       }
     }
   }, []);
@@ -49,25 +54,40 @@ const App = () => {
     setIsLoggedIn(true);
 
     // Navigate to the appropriate page based on the user role
-    if (role == '1') {
+    if (role === "admin") {
       navigate("/admin");
 
     } 
-    else if(role == '1') {
-      navigate("/post");
-    } else if(role == '1') {
+    // else if(role == '1') {
+    //   navigate("/post");
+     else if(role === "admin") {
       navigate("/admin");
-    } else if(role == '1') {
+    } else if(role === "admin") {
       navigate("/postalhistory");
-    } else if(role == '1') {
+    } else if(role === "admin") {
       navigate("/register");
-    } else if (role == '2') {
+    } else if (role === "deliverypartner") {
       navigate("/delivery");
-    } else if (role == '3') {
-      navigate("/");
+    } else if (role === "agent") {
+      navigate("/agent");
     }
   };
+  const location = useLocation();
 
+  const handleOrderSubmit = () => {
+    // Logic for order submission
+
+    if (location.pathname === '/agent') {
+      // Handle order submission for agent route
+      // ...
+    } else if (location.pathname === '/admin') {
+      // Handle order submission for admin route
+      // ...
+    }
+
+    // Redirect to the current route
+    navigate('/agent' || '/admin');
+  };
   // const handleLogout = () => {
   //   localStorage.removeItem('token');
   //   localStorage.removeItem('username');
@@ -88,13 +108,18 @@ const App = () => {
           <Route path="/" element={<Home />} />
          
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-            {isLoggedIn && userRole == '1' && <Route path="/register" element={<Register />} />}
-          {isLoggedIn && userRole == '1' && <Route path="/admin" element={<AdminPage />} />}
-          {isLoggedIn && userRole == '1' && <Route path="/list" element={<UserList />} />}
-          {isLoggedIn && userRole == '1' && <Route path="/post" element={<Post />} />}
-          {isLoggedIn && userRole == '1' && <Route path="/admin" element={<CreateOrder />} />}
-         {isLoggedIn && userRole == '1' && <Route path="/postalhistory" element={<CustomerHistory/>}/>}
-          {isLoggedIn && userRole == '2' && <Route path="/delivery" element={<OrderUpdate />} />}
+            {isLoggedIn && (userRole === "agent" || userRole === "admin")  && <Route path="/register" element={<Register />} />}
+          {isLoggedIn && userRole === "admin" && <Route path="/admin" element={<AdminPage />} />}
+          {isLoggedIn &&(userRole === "agent" || userRole === "admin") && <Route path="/list" element={<UserList />} />}
+          {isLoggedIn && (userRole === "agent" || userRole === "admin") && <Route path="/post" element={<Post />} />}
+          {isLoggedIn && (userRole === "agent" || userRole === "admin")  && <Route path="/admin" element={<CreateOrder />} />}
+         {isLoggedIn && userRole === "admin"&& <Route path="/postalhistory" element={<CustomerHistory/>}/>}
+          {isLoggedIn && userRole === "deliverypartner" && <Route path="/delivery" element={<OrderUpdate />} />}
+          {isLoggedIn && (userRole === "agent" || userRole === "admin")  && <Route path="/reset" element={<ResetPasswordPage />} />}
+          {isLoggedIn && (userRole === "agent" || userRole === "admin")  &&  <Route path="/update" element={<UpdateUserForm />} />}
+          {isLoggedIn && userRole === "agent" && <Route path="/agent" element={< Agent/>} />}
+          {isLoggedIn && userRole === "agent" && <Route path="/agent" element={< Update/>} />}
+
         </Routes>
         {/* {isLoggedIn && <button onClick={handleLogout}>Logout</button>}  */}
       </div>

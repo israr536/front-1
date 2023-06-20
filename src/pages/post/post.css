@@ -62,9 +62,10 @@
   .post-form .submit-button {
     margin: 0 auto;
     margin-top:20px;
-
-    
-    
+    background-color: black;
+  }
+  .post-form .submit-button:hover{
+    background-color: black;
   }
   
   .delivery-status{
@@ -93,6 +94,7 @@
   label {
 
     display: block;
+    color: black;
   }
   
   input[type='text'] {
@@ -105,13 +107,13 @@
   button {
     margin-top: 20px;
     padding: 10px;
-    background-color:rgb(68, 68, 107);
+    background-color:rgb(22, 20, 20);
     color: white;
     border: none;
     cursor: pointer;
   }
   
   button:hover {
-    background-color:rgb(68, 68, 107);
+    background-color:rgb(21, 20, 20);
   }
   

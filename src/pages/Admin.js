@@ -4,7 +4,7 @@ import { AccountCircle, SupervisorAccount } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Slider from './Corosoul';
+import Slider from './Slider';
 import Pagination from '../pagination/Pagination';
 import { Paginate } from '../pagination/Paginate';
 import './admin.css';
@@ -113,8 +113,8 @@ const Header = () => {
       };
 
       const formattedDate = currentDate.toLocaleString('en-IN', options);
-      // const response = await fetch(`http://localhost:3000/api/order/createorder`
-      const response = await fetch(`${baseURL}/order/createorder`, {
+       const response = await fetch('http://localhost:3000/api/order/createorder',{
+      // const response = await fetch(`${baseURL}/order/createorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -185,17 +185,17 @@ const Header = () => {
       <nav className="main-nav">
         <ul
         >
-          <li><Link to='/postalhistory'>PostList</Link></li>
+          <li><Link to='/postalhistory'>Post List</Link></li>
         
-          <li>
+          {/* <li>
             <Link to='/list'>UserList</Link>
-          </li>
-          <li ><Link to='/admin'><button><CreateOrder/></button></Link></li>
+          </li> */}
+          <li ><Link to='/admin'><CreateOrder/></Link></li>
           <li
           >
-            <Link to='/post'><button className="postLink" >
+            <Link to='/post'>
               Post
-            </button></Link>
+            </Link>
           </li>
           <li
           >
@@ -205,7 +205,7 @@ const Header = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
-              style={{ marginRight: '20px' }}
+              style={{ marginRight: '10px',color:'white' }}
               startIcon={<SupervisorAccount />}
             >
 
@@ -221,6 +221,9 @@ const Header = () => {
             >
                <MenuItem>
                 <Link to='/register'><button>Add user</button></Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to='/list'><button>UserList</button></Link>
               </MenuItem>
               <MenuItem onClick={handleLogout}><button>Logout</button></MenuItem>
               <div className="container">
@@ -372,8 +375,8 @@ const AdminPage = () => {
   const fetchOrders = async () => {
     try {
       setIsLoading(true);
-      //const response = await fetch(`http://localhost:3000/api/order/history`);
-      const response = await fetch(`${baseURL}/order/history`);
+      const response = await fetch('http://localhost:3000/api/order/history');
+      // const response = await fetch(`${baseURL}/order/history`);
       const data = await response.json();
   
       const currentOrder = data.orderHistory.find(order => order.status === 'Generated');

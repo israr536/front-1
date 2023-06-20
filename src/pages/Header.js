@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './header.css';
 //import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Login } from '@mui/icons-material';
 
 const Header = () => {
 
@@ -26,13 +27,16 @@ const Header = () => {
       <div className="logo">Sagenext Post</div>
       <nav className='main-nav'>
         <ul>
+          {/* <li><Link to='/post'>Create Order</Link></li> */}
+          <li><Link to='/login'>Log in</Link></li>
+
           {/* <li>
           <Link to="/post" style={{color: '#fff', textDecoration:'none', fontSize:'16px'}}>
             Send Your Letters
           </Link>
           </li> */}
          {/* <li>{ isLoggedIn && <button onClick={handleLogout}>Logout</button>}</li>  */}
-          <li>About us</li>
+          {/* <li>About us</li> */}
         </ul>
       </nav>
       {/* <div className="menu-icon">

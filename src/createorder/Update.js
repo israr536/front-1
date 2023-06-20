@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const baseURL = sessionStorage.getItem("apipathurl");
         
-  const CreateOrder = () =>{
+  const Update = () =>{
     const [orders, setOrders] = useState([]);
     const [orderID, setOrderID] = useState('');
     const [status, setStatus] = useState('');
@@ -23,7 +23,6 @@ const baseURL = sessionStorage.getItem("apipathurl");
     const [successMessage, setSuccessMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState('');
-    const [userRole, setUserRole] = useState('');
     
 
 const open = Boolean(anchorEl);
@@ -94,8 +93,8 @@ const open = Boolean(anchorEl);
           //     pincode,
           //   }),
           // });
-           const response = await fetch('http://localhost:3000/api/order/createorder',{
-          //  const response = await fetch(`${baseURL}/order/createorder`, {
+          // const response = await fetch('http://localhost:3000/api/order/createorder'
+           const response = await fetch(`${baseURL}/order/createorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -261,12 +260,12 @@ const open = Boolean(anchorEl);
                   </div>
                   <div>
                     
-                  <Link to={userRole === 'admin' ? '/admin' : '/agent'}>
-                <button onClick={createOrder} style={{ marginRight: '10px' }}>
-                   Create Order
-                    </button>
-                      </Link>
-
+                    <Link to='/admin'> <button
+                        onClick={createOrder}
+                        style={{ marginRight: '10px' }}
+                      >
+                        Create Order
+                      </button></Link> 
                   
                     <button onClick={() => setShowForm(false)}>Cancel</button>
                   </div>
@@ -281,4 +280,4 @@ const open = Boolean(anchorEl);
 
 };
 
-export default CreateOrder;
+export default Update;

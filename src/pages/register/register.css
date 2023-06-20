@@ -33,7 +33,7 @@
 .register-form input[type="submit"] {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: rgb(68, 68, 107);
+  background-color: black;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -41,7 +41,7 @@
 }
 
 .register-form input[type="submit"]:hover {
-  background-color: rgb(68, 68, 107);
+  background-color: black;
 }
 
 .register-form p {

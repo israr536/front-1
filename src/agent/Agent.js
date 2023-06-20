@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import { Paginate } from '../pagination/Paginate';
 import axios from 'axios';
+import { AccountCircle, SupervisorAccount } from '@mui/icons-material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './deliverypartner.css';
-import { Link } from 'react-router-dom';
-
-
-const baseURL = sessionStorage.getItem('apipathurl');
-// const { sessionStorage } = window;
+import { Link, useNavigate } from 'react-router-dom';
+import { RiUserSettingsLine } from 'react-icons/ri';
+import { RiUserAddLine, RiLogoutBoxLine, RiUserSearchLine } from 'react-icons/ri';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Update from '../createorder/Update';
+import Slider from '../pages/Slider';
+import CreateOrder from '../createorder/CreateOrder';
 
 const Header = () => {
   const navigate = useNavigate(); // Hook for navigation
+  // const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [userRole, setUserRole] = useState('');
   
+
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -30,29 +49,54 @@ const Header = () => {
 
   return (
     <div>
-      <header>
-        <div className="logo">Sagenext Post</div>
-        <nav className='main-nav'>
-          <ul>
-            {/* <li>
-            <Link to="/post" style={{color: '#fff', textDecoration:'none', fontSize:'16px'}}>
-              Send Your Letters
-            </Link>
-            </li> */}
-            <li>{ isLoggedIn && <button onClick={handleLogout}>Logout</button>}</li>
-            {/* <li>About us</li> */}
-          </ul>
-        </nav>
-        {/* <div className="menu-icon">
-          <FaBars />
-        </div> */}
-      </header>
-    
-    </div>
+    <header>
+      <div className="logo">Sagenext Post</div>
+      <nav className='main-nav'>
+        <ul>
+          <li><Link to='/agent'><CreateOrder/></Link></li>
+          <li><Link to='/post'>Post</Link></li>
+          {/* <li><Link to='/list'>UserList</Link></li>
+          <li><Link to='/register'>AddUser</Link></li> */}
+          <li>
+            <Button
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+              style={{ marginRight: '10px', color:'white' }}
+              startIcon={<SupervisorAccountIcon />}
+            >
+              
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem>
+                <Link to='/register'><button>Add User</button></Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to='/list'><button>User List</button></Link>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <Link to='/logout'><button>Logout</button></Link>
+              </MenuItem>
+            </Menu>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
   );
 };
 
-const OrderUpdate = () => {
+const Agent = () => {
   const [orderID, setOrderID] = useState('');
   const [status, setStatus] = useState('');
   const [date, setDate] = useState(null); // Updated to use the "date" state as null
@@ -87,7 +131,7 @@ const OrderUpdate = () => {
         second: 'numeric',
       };
       const formattedDate = currentDate.toLocaleString('en-IN', options);
-       const response = await axios.put('http://localhost/api/update/status',{
+       const response = await axios.put(`http://localhost/api/update/status`,{
       // const response = await axios.put(`${baseURL}/update/status`, {
         orderID,
         status,
@@ -167,6 +211,7 @@ const OrderUpdate = () => {
   return (
     <>
       <Header />
+     <Slider/>
       <div className='container'>
         <h2>Update Order Status</h2>
         <div className='delivery-content'>
@@ -266,8 +311,9 @@ const OrderUpdate = () => {
               </div>
             )}
       </div>
+      
     </>
   );
 };
 
-export default OrderUpdate;
+export default Agent;

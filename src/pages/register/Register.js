@@ -8,7 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [designation, setDesignation] = useState('');
-  const [role, setRole] = useState('2');
+  const [role, setRole] = useState('');
   const [registerMessage, setRegisterMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,7 +32,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!username || !email || !password || !role) {
+    if (!username || !email || !password ) {
       // Display an alert if any field is left vacant
       alert('Please fill in all fields');
       return;
@@ -40,8 +40,8 @@ const Register = () => {
 
     try {
       setIsLoading(true); // Set loading state to true
-      // const response = await fetch(`http://localhost:3000/api/user/register`
-      const response = await fetch(`${baseURL}/user/register`, {
+       const response = await fetch(`http://localhost:3000/api/user/register`,{
+      // const response = await fetch(`${baseURL}/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

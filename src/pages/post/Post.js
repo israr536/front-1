@@ -66,7 +66,7 @@ const baseURL = sessionStorage.getItem('apipathurl');
     const [senderState, setSenderState] = useState('');
     const [senderPostalCode, setSenderPostalCode] = useState('');
     const [senderMobilenumber, setSenderMobilenumber] = useState('');
-    const [senderEmail, setSenderEmail] = useState('');
+    const [senderemail, setSenderEmail] = useState('');
 
     const [receiverName, setReceiverName] = useState('');
     const [receiverAddress, setReceiverAddress] = useState('');
@@ -74,16 +74,26 @@ const baseURL = sessionStorage.getItem('apipathurl');
     const [receiverState, setReceiverState] = useState('');
     const [receiverPostalCode, setReceiverPostalCode] = useState('');
     const [receiverMobilenumber, setReceiverMobilenumber] = useState('');
-    const [receiverEmail, setReceiverEmail] = useState('');
+    const [receiveremail, setReceiverEmail] = useState('');
 
-    const [itemCategory, setItemCategory] = useState('');
-    const [itemDescription, setItemDescription] = useState('');
+    const [ItemCategory, setItemCategory] = useState('');
+    const [ItemDescription, setItemDescription] = useState('');
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedTime, setSelectedTime] = useState('');
+  
 
     const [submitMessage, setSubmitMessage] = useState('');
 
     const [isLoading, setIsLoading] = useState(false); // Loading state variable
 
     // ...existing code...
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
+    };
+  
+    const handleTimeChange = (e) => {
+      setSelectedTime(e.target.value);
+    };
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -96,69 +106,43 @@ const handleSubmit = (event) => {
     !senderState ||
     !senderPostalCode ||
     !senderMobilenumber ||
-    !senderEmail ||
+    !senderemail ||
     !receiverName ||
     !receiverAddress ||
     !receiverCity ||
     !receiverState ||
     !receiverPostalCode ||
     !receiverMobilenumber ||
-    !receiverEmail ||
-    !itemCategory ||
-    !itemDescription
+    !receiveremail ||
+    !ItemCategory ||
+    !ItemDescription
   ) {
-      // Display error message for each empty field
-      if (!senderName) {
-        alert('Sender Name is required.');
+    const fields = [
+      { value: senderName, message: 'Sender Name is required.' },
+      { value: senderAddress, message: 'Sender Address is required.' },
+      { value: senderCity, message: 'Sender city is required.' },
+      { value: senderState, message: 'Sender state is required.' },
+      { value: senderPostalCode, message: 'Sender code is required.' },
+      { value: senderMobilenumber, message: 'Sender mobileno is required.' },
+      { value: senderemail, message: 'Sender Email is required.' },
+      { value: receiverName, message: 'receiver Name is required.' },
+      { value: receiverAddress, message: 'receiver Address is required.' },
+      { value: receiverCity, message: 'receiver City is required.' },
+      { value: receiverState, message: 'receiver State is required.' },
+      { value: receiverPostalCode, message: 'receiver PostalCode is required.' },
+      { value: receiverMobilenumber, message: 'receiver Mobilenumber is required.' },
+      { value: receiveremail, message: 'receiver email is required.' },
+      { value: ItemCategory, message: 'item category is required.' },
+      { value: ItemDescription, message: 'item description is required.' },
+      
+    ];
+  
+    fields.forEach(field => {
+      if (!field.value) {
+        alert(field.message);
       }
-      if (!senderAddress) {
-        alert('Sender Address is required.');
-      } 
-      if (!senderCity) {
-        alert('Sender city is required.');
-      }
-      if (!senderState) {
-        alert('Sender state is required.');
-      } 
-      if (!senderPostalCode) {
-        alert('Sender code is required.');
-      }
-      if ( !senderMobilenumber) {
-        alert('Sender mobileno is required.');
-      } 
-      if (!senderEmail ) {
-        alert('Sender Email is required.');
-      }
-      if (!receiverName ) {
-        alert('receiver Name is required.');
-      } 
-      if (!receiverAddress) {
-        alert('receiver Address is required.');
-      }
-      if (!receiverCity ) {
-        alert('receiver City  is required.');
-      } 
-      if ( !receiverState) {
-        alert('!receiver State is required.');
-      } 
-      if (!receiverPostalCode) {
-        alert('!receiver PostalCode is required.');
-      }
-      if (!receiverMobilenumber ) {
-        alert('receiver Mobilenumber is required.');
-      } 
-      if (!receiverEmail ) {
-        alert('receiver email is required.');
-      } 
-      if (!itemCategory) {
-        alert('itemcategory is required.');
-      } 
-      if (!itemDescription) {
-        alert('item descriptions is required.');
-      }
-      // if (!receiverCity ) {
-      //   alert('Sender Address is required.');
-      // }
+    });
+  
     return;
   }
 
@@ -169,23 +153,23 @@ const handleSubmit = (event) => {
     senderState,
     senderPostalCode,
     senderMobilenumber,
-    senderEmail,
-    itemCategory,
-    itemDescription,
+    senderemail,
+    ItemCategory,
+    ItemDescription,
     receiverName,
     receiverAddress,
     receiverCity,
     receiverState,
     receiverPostalCode,
     receiverMobilenumber,
-    receiverEmail,
-    itemCategory,
-    itemDescription,
+    receiveremail,
+    ItemCategory,
+    ItemDescription,
   };
   
   setIsLoading(true); // Set loading to true when form is submitted
-  //fetch(`http://localhost:3000/api/post/createpost`
-  fetch(`${baseURL}/post/createpost`, {
+  fetch('http://localhost:3000/api/post/createpost',{
+  // fetch(`${baseURL}/post/createpost`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -277,7 +261,7 @@ const handleSubmit = (event) => {
               <br />
               <label>
                 Email:
-                <input type="text" value={senderEmail} onChange={(e) => setSenderEmail(e.target.value)} />
+                <input type="text" value={senderemail} onChange={(e) => setSenderEmail(e.target.value)} />
               </label>
               <br />
               {/* <label>
@@ -327,7 +311,7 @@ const handleSubmit = (event) => {
               <br />
               <label>
                 Email:
-                <input type="text" value={receiverEmail} onChange={(e) => setReceiverEmail(e.target.value)} />
+                <input type="text" value={receiveremail} onChange={(e) => setReceiverEmail(e.target.value)} />
               </label>
               <br />
               {/* <label>
@@ -347,14 +331,24 @@ const handleSubmit = (event) => {
             <div className='common-fields w-100'>  
                <label style={{marginRight: '30px'}}>
                 Item Category:
-                <input type="text" value={itemCategory} onChange={(e) => setItemCategory(e.target.value)} />
+                <input type="text" value={ItemCategory} onChange={(e) => setItemCategory(e.target.value)} />
               </label>
               <br />
               <label style={{marginRight: '10px'}}>
                 Item Description:
-                <input type="text" value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} />
+                <input type="text" value={ItemDescription} onChange={(e) => setItemDescription(e.target.value)} />
               </label>
               <br />
+              {/* <label style={{ marginRight: '10px' }}>
+                Date:
+                <DatePicker selected={selectedDate} onChange={handleDateChange} />
+              </label>
+              <br />
+              <label style={{ marginRight: '10px' }}>
+                Time:
+                <input type="text" value={selectedTime} onChange={handleTimeChange} />
+              </label>
+              <br /> */}
               </div>
             </fieldset>
             

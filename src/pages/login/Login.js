@@ -12,13 +12,21 @@ const Login = ({ onLogin }) => {
 
     try {
       setIsLoading(true);
-      const response = await fetch(`${baseURL}/user/login`, {
+      const response = await fetch('http://localhost:3000/api/user/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
+      
+      // const response = await fetch(`${baseURL}/user/login`, {
+      //   method: 'POST',
+      //   body: JSON.stringify({ email, password }),
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      // });
 
       const data = await response.json();
       console.log(response);
@@ -29,7 +37,7 @@ const Login = ({ onLogin }) => {
         localStorage.setItem('username', data.username);
         localStorage.setItem('role', data.role);
 
-        if (data.role == '1' || data.role == '2') {
+        if (data.role === "admin" || data.role === "deliverypartner" || data.role === "agent") {
           alert('Login successful');
         } else {
           alert('Invalid email or password');

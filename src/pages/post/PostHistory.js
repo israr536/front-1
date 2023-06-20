@@ -26,8 +26,8 @@ const CustomerHistory = () => {
 
   const fetchCustomerHistory = async () => {
     try {
-      // const response = await fetch('http://localhost:3000/api/post/postalhistory');
-      const response = await fetch(`${baseURL}/post/postalhistory`);
+       const response = await fetch('http://localhost:3000/api/post/postalhistory');
+      // const response = await fetch(`${baseURL}/post/postalhistory`);
       const data = await response.json();
   
       const reversedCustomerHistory = data.reverse(); // Reverse the customer history array
@@ -59,8 +59,8 @@ const CustomerHistory = () => {
                 <th>Sender Postal Code</th>
                 <th>Sender Mobile Number</th>
                 <th>Sender Email</th>
-                <th>Sender Item Category</th>
-                <th>Sender Item Description</th>
+                {/* <th>Sender Item Category</th>
+                <th>Sender Item Description</th> */}
                 <th>Receiver Name</th>
                 <th>Receiver Address</th>
                 <th>Receiver City</th>
@@ -68,8 +68,8 @@ const CustomerHistory = () => {
                 <th>Receiver Postal Code</th>
                 <th>Receiver Mobile Number</th>
                 <th>Receiver Email</th>
-                <th>Receiver Item Category</th>
-                <th>Receiver Item Description</th>
+                <th> Item Category</th>
+                <th> Item Description</th>
               </tr>
             </thead>
             <tbody>
@@ -81,19 +81,19 @@ const CustomerHistory = () => {
                   <td>{customer.senderCity}</td>
                   <td>{customer.senderState}</td>
                   <td>{customer.senderPostalCode}</td>
-                  <td>{customer.senderMobileNumber}</td>
+                  <td>{customer.senderMobilenumber}</td>
                   <td>{customer.senderemail}</td>
-                  <td>{customer.senderItemCategory}</td>
-                  <td>{customer.senderItemDescription}</td>
+                  {/* <td>{customer.senderItemCategory}</td>
+                  <td>{customer.senderItemDescription}</td> */}
                   <td>{customer.receiverName}</td>
                   <td>{customer.receiverAddress}</td>
                   <td>{customer.receiverCity}</td>
                   <td>{customer.receiverState}</td>
                   <td>{customer.receiverPostalCode}</td>
-                  <td>{customer.receiverMobileNumber}</td>
+                  <td>{customer.receiverMobilenumber}</td>
                   <td>{customer.receiveremail}</td>
-                  <td>{customer.receiverItemCategory}</td>
-                  <td>{customer.receiverItemDescription}</td>
+                  <td>{customer.ItemCategory}</td>
+                  <td>{customer.ItemDescription}</td>
                 </tr>
               ))}
             </tbody>
