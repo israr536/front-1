@@ -16,7 +16,7 @@
   }
   
   .pageLink {
-    color: rgb(68, 68, 107);
+    color: black;
     cursor: pointer;
     padding: 0.5rem 1rem;
     text-decoration: none;
@@ -24,7 +24,7 @@
   }
   
   .pageLink:hover {
-    background-color: rgb(68, 68, 107);
+    background-color: black;
     color: white;
   }
   
