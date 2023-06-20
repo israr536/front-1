@@ -168,8 +168,8 @@ const handleSubmit = (event) => {
   };
   
   setIsLoading(true); // Set loading to true when form is submitted
-  fetch('http://localhost:3000/api/post/createpost',{
-  // fetch(`${baseURL}/post/createpost`, {
+  // fetch('http://localhost:3000/api/post/createpost',{
+   fetch(`${baseURL}/post/createpost`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

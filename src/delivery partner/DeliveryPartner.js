@@ -64,7 +64,7 @@ const OrderUpdate = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate(); // Hook for navigation
 
-//  const baseURL = sessionStorage.getItem("apipathurl")
+  const baseURL = sessionStorage.getItem("apipathurl")
 
   const pageSize = 10;
   const onPageChange = (page) => {
@@ -72,7 +72,7 @@ const OrderUpdate = () => {
   };
   const paginatedOrderHistory = Paginate(orderHistory, currentPage, pageSize);
 
-  const baseURL = sessionStorage.getItem('apipathurl');
+  // const baseURL = sessionStorage.getItem('apipathurl');
 
   const handleUpdate = async () => {
     try {
@@ -87,8 +87,8 @@ const OrderUpdate = () => {
         second: 'numeric',
       };
       const formattedDate = currentDate.toLocaleString('en-IN', options);
-       const response = await axios.put('http://localhost/api/update/status',{
-      // const response = await axios.put(`${baseURL}/update/status`, {
+      //  const response = await axios.put('http://localhost/api/update/status',{
+       const response = await axios.put(`${baseURL}/update/status`, {
         orderID,
         status,
         date:formattedDate,
@@ -120,8 +120,8 @@ const OrderUpdate = () => {
 
   const fetchOrderHistory = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/update/history');
-      // const response = await axios.post(`${baseURL}/update/history`);
+      // const response = await axios.post('http://localhost:3000/api/update/history');
+      const response = await axios.post(`${baseURL}/update/history`);
       const data = response.data;
   
       const currentOrder = data.orderHistory.find(order => order.status === 'Generated');

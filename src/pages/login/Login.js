@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './login.css';
+
 const baseURL = sessionStorage.getItem('apipathurl')
+
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,21 +14,21 @@ const Login = ({ onLogin }) => {
 
     try {
       setIsLoading(true);
-      const response = await fetch('http://localhost:3000/api/user/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      // const response = await fetch(`${baseURL}/user/login`, {
+      // const response = await fetch('http://localhost:3000/api/user/login', {
       //   method: 'POST',
       //   body: JSON.stringify({ email, password }),
       //   headers: {
       //     'Content-Type': 'application/json',
       //   },
       // });
+      
+      const response = await fetch(`${baseURL}/user/login`, {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
       const data = await response.json();
       console.log(response);

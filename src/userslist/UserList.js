@@ -26,8 +26,8 @@ const UserList = () => {
 
   const fetchUserList = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/user/getusers`);
-      // const response = await fetch(`${baseURL}/user/getusers`);
+      // const response = await fetch(`http://localhost:3000/api/user/getusers`);
+       const response = await fetch(`${baseURL}/user/getusers`);
       const data = await response.json();
   
       if (response.ok) {

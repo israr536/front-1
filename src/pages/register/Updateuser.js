@@ -33,24 +33,24 @@ const UpdateUserForm = () => {
         alert('Please fill in all fields');
         return;
       }
-      // try {
-      //   const response = await fetch(`${baseURL}/user/update`, {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ userId, username, email, role }),
-      //   });
-    
-    
       try {
-        const response = await fetch('http://localhost:3000/api/user/update', {
+        const response = await fetch(`${baseURL}/user/update`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ userId, username, email, role }),
         });
+    
+    
+      // try {
+      //   const response = await fetch('http://localhost:3000/api/user/update', {
+      //     method: 'PUT',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({ userId, username, email, role }),
+      //   });
     
         if (response.ok) {
           const data = await response.json();

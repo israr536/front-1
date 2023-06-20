@@ -94,8 +94,8 @@ const open = Boolean(anchorEl);
           //     pincode,
           //   }),
           // });
-           const response = await fetch('http://localhost:3000/api/order/createorder',{
-          //  const response = await fetch(`${baseURL}/order/createorder`, {
+          //  const response = await fetch('http://localhost:3000/api/order/createorder',{
+            const response = await fetch(`${baseURL}/order/createorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

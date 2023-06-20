@@ -22,23 +22,23 @@ const ResetPasswordPage = () => {
         alert('Please fill in all fields');
         return;
       }
-      // try {
-      //   const response = await fetch(`${baseURL}/user/reset`, {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ userId, newPassword }),
-      //   });
-    
       try {
-        const response = await fetch('http://localhost:3000/api/user/reset', {
+        const response = await fetch(`${baseURL}/user/reset`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ userId, newPassword }),
         });
+    
+      // try {
+      //   const response = await fetch('http://localhost:3000/api/user/reset', {
+      //     method: 'PUT',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({ userId, newPassword }),
+      //   });
     
         const data = await response.json();
     
