@@ -58,3 +58,10 @@ button[type="submit"]:hover {
 button[type="submit"]:active {
   background-color: black;
 }
+
+.toast-container {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

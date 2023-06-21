@@ -42,7 +42,7 @@ const Header = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -69,18 +69,18 @@ const Header = () => {
   //     const response = await fetch(`http://localhost:3000/api/order/history`);
   //     // const response = await fetch(`${baseURL}/order/history`);
   //     const data = await response.json();
-  
+
   //     // Get the currently generated order
   //     const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
-  
+
   //     // Sort the orders based on the date in descending order, with the currently generated order at the top
   //     const sortedOrders = data.orderHistory
   //       .filter(order => order.status !== 'Generated') // Exclude the currently generated order from the sorting process
   //       .sort((a, b) => new Date(b.date) - new Date(a.date));
-  
+
   //     // Prepend the currently generated order at the beginning of the sorted orders array
   //     sortedOrders.unshift(currentOrder);
-  
+
   //     setOrders(sortedOrders);
   //   } catch (error) {
   //     console.error('Failed to fetch orders:', error);
@@ -88,12 +88,12 @@ const Header = () => {
   //     setIsLoading(false); // Set loading state back to false after fetching orders
   //   }
   // };
-  
-  
+
+
 
   const createOrder = async () => {
-    
-    if (!orderID || !status || ! date|| !time || !location) {
+
+    if (!orderID || !status || !date || !time || !location) {
       // Display an alert if any field is left vacant
       alert('Please fill in all fields');
       return;
@@ -114,7 +114,7 @@ const Header = () => {
 
       const formattedDate = currentDate.toLocaleString('en-IN', options);
       //  const response = await fetch('http://localhost:3000/api/order/createorder',{
-       const response = await fetch(`${baseURL}/order/createorder`, {
+      const response = await fetch(`${baseURL}/order/createorder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -186,11 +186,17 @@ const Header = () => {
         <ul
         >
           <li><Link to='/postalhistory'>Post List</Link></li>
-        
+
           {/* <li>
             <Link to='/list'>UserList</Link>
           </li> */}
-          <li ><Link to='/admin'><CreateOrder/></Link></li>
+          {/* <div onClick={handleCreateOrderClick}> */}
+            <li>
+              <Link to='/admin'>
+                <CreateOrder />
+              </Link>
+            </li>
+          {/* </div> */}
           <li
           >
             <Link to='/post'>
@@ -205,10 +211,10 @@ const Header = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
-              style={{ marginRight: '10px',color:'white' }}
-              startIcon={<SupervisorAccount />}
+              style={{ marginRight: '5px', color: 'white', textTransform: 'capitalize', fontSize: '16px' }}
+            // startIcon={<SupervisorAccount />}
             >
-
+              Admin
             </Button>
             <Menu
               id="basic-menu"
@@ -219,7 +225,7 @@ const Header = () => {
                 'aria-labelledby': 'basic-button',
               }}
             >
-               <MenuItem>
+              <MenuItem>
                 <Link to='/register'><button>Add user</button></Link>
               </MenuItem>
               <MenuItem>
@@ -271,29 +277,29 @@ const Header = () => {
                       />
                     </div>
                     <div>
-                    <label> Customer Mobile Number:</label>
-                    <input
-                      type="text"
-                      value={mobilenumber}
-                      onChange={(e) => setMobileNumber(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label> Receiver Address:</label>
-                    <input
-                      type="text"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label> Receiver Pincode:</label>
-                    <input
-                      type="text"
-                      value={pincode}
-                      onChange={(e) => setPincode(e.target.value)}
-                    />
-                  </div>
+                      <label> Customer Mobile Number:</label>
+                      <input
+                        type="text"
+                        value={mobilenumber}
+                        onChange={(e) => setMobileNumber(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label> Receiver Address:</label>
+                      <input
+                        type="text"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label> Receiver Pincode:</label>
+                      <input
+                        type="text"
+                        value={pincode}
+                        onChange={(e) => setPincode(e.target.value)}
+                      />
+                    </div>
                     <div>
                       <Link to="/admin">
                         <button
@@ -308,14 +314,14 @@ const Header = () => {
                     </div>
 
                   </form>
-                   
+
                 )}
               </div>
               {/* <MenuItem><Link to='/post'><button>Post</button></Link></MenuItem> */}
-             
+
             </Menu>
-            </li>
-         
+          </li>
+
         </ul>
 
       </nav>
@@ -376,11 +382,11 @@ const AdminPage = () => {
     try {
       setIsLoading(true);
       // const response = await fetch('http://localhost:3000/api/order/history');
-       const response = await fetch(`${baseURL}/order/history`);
+      const response = await fetch(`${baseURL}/order/history`);
       const data = await response.json();
-  
+
       const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
-  
+
       const sortedOrders = data.orderHistory
         .filter(order => order.status !== 'Generated')
         .sort((a, b) => {
@@ -390,13 +396,13 @@ const AdminPage = () => {
           }
           return new Date(b.time) - new Date(a.time);
         });
-  
+
       if (currentOrder) {
         sortedOrders.unshift(currentOrder);
       }
-  
+
       const reversedOrders = sortedOrders.reverse(); // Reverse the sorted orders array
-  
+
       setOrders(reversedOrders);
     } catch (error) {
       console.error('Failed to fetch orders:', error);
@@ -404,7 +410,7 @@ const AdminPage = () => {
       setIsLoading(false);
     }
   };
-  
+
 
 
   // useEffect(() => {
@@ -413,7 +419,7 @@ const AdminPage = () => {
 
   // const fetchOrders = async () => {
   //   try {
-      
+
   //     setIsLoading(true); // Set loading state to true
 
   //     const response = await fetch(`${baseURL}/order/history`);
@@ -556,7 +562,7 @@ const AdminPage = () => {
                     <div>
 
                       <Link to='/admin'> <button
-                      
+
                         style={{ marginRight: '10px' }}
                       >
                         Create Order

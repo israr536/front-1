@@ -6,6 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -22,7 +24,7 @@ const baseURL = sessionStorage.getItem("apipathurl");
     const [mobilenumber, setMobileNumber] = useState('');
     const [address, setAddress] = useState('');
     const [pincode, setPincode] = useState('');
-    const [showForm, setShowForm] = useState(false);
+    const [showForm, setShowForm] = useState(true);
     const [successMessage, setSuccessMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState('');
@@ -122,7 +124,7 @@ const open = Boolean(anchorEl);
               const newOrder = data.order;
               setOrders([newOrder, ...orders]);
     
-              setShowForm(false);
+              setShowForm(true);
               setOrderID('');
               setStatus('');
               setDate(null);
@@ -131,7 +133,7 @@ const open = Boolean(anchorEl);
                setMobileNumber('');
                setAddress('');
                setPincode('');
-              alert('Form submitted successfully!');
+              toast.success('Form submitted successfully!');
                  // Navigate to the appropriate page based on the user role
           // if (userRole === 'admin') {
           //   navigate('/admin');
@@ -139,13 +141,13 @@ const open = Boolean(anchorEl);
           //   navigate('/agent');
           // }
             } else {
-              console.error('Failed to create order:', data.message);
+              toast.error('Failed to create order:', data.message);
             }
           } else {
-            console.error('Failed to create order:', response.statusText);
+            toast.error('Failed to create order:', response.statusText);
           }
         } catch (error) {
-          console.error('Failed to create order:', error);
+          toast.error('Failed to create order:', error);
         } finally {
           setIsLoading(false); // Set loading state back to false after creating order
         }
@@ -193,7 +195,7 @@ const open = Boolean(anchorEl);
             }}
           >
             <div className="container">
-              {showForm ? (
+          
                 <form className="admin-form">
                   <div>
                     <label>Order ID:</label>
@@ -272,9 +274,9 @@ const open = Boolean(anchorEl);
                   </div>
                   {successMessage && <p>{successMessage}</p>}
                 </form>
-              ) : (
-                <button onClick={handleCreateOrderClick}>Create Order</button>
-              )}
+                <ToastContainer className="toast-container" />
+                {/* <button onClick={handleCreateOrderClick}>Create Order</button> */}
+              
             </div>
           </Menu>
         </div>

@@ -66,10 +66,10 @@ const Header = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
-              style={{ marginRight: '10px', color:'white' }}
-              startIcon={<SupervisorAccountIcon />}
+              style={{ marginRight: '5px',color:'white',  textTransform: 'capitalize',fontSize:'16px' }}
+              // startIcon={<SupervisorAccountIcon />}
             >
-              
+              Agent
             </Button>
             <Menu
               id="basic-menu"

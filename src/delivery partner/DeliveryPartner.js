@@ -40,6 +40,7 @@ const Header = () => {
             </Link>
             </li> */}
             <li>{ isLoggedIn && <button onClick={handleLogout}>Logout</button>}</li>
+            <li>DeliveryPartner</li>
             {/* <li>About us</li> */}
           </ul>
         </nav>

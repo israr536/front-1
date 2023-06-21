@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
 
 const baseURL = sessionStorage.getItem("apipathurl")
@@ -7,7 +9,8 @@ const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,16 +43,18 @@ const Login = ({ onLogin }) => {
         localStorage.setItem('role', data.role);
 
         if (data.role === "admin" || data.role === "deliverypartner" || data.role === "agent") {
-          alert('Login successful');
+          toast.success(`Login successful`);
         } else {
-          alert('Invalid email or password');
+          toast.error('Invalid email or password');
+
         }
       } else {
-        setErrorMessage('Invalid email or password.');
-        alert('Login failed! Invalid email or password.');
+        toast.error('An error occurred during login.');
+
+        // alert('Login failed! Invalid email or password.');
       }
     } catch (error) {
-      setErrorMessage('An error occurred during login.');
+      toast.error('An error occurred during login.');
       console.error('Error:', error);
     } finally {
       setIsLoading(false);
@@ -59,7 +64,9 @@ const Login = ({ onLogin }) => {
   return (
     <div className="login-page">
       <h1>Login Page</h1>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {/* {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {/* {errorMessage && <div className="error-message">{errorMessage}</div>} */}
+      {/* {successMessage && <div className="success-message">{successMessage}</div>} */} 
       <form onSubmit={handleSubmit}>
         <label>
           <br />
@@ -78,6 +85,7 @@ const Login = ({ onLogin }) => {
           <button type="submit">Log in</button>
         )}
       </form>
+      <ToastContainer className="toast-container" />
     </div>
   );
 };

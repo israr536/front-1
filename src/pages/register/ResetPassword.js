@@ -1,6 +1,8 @@
 import React from 'react';
 import './resetpassword.css'
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = sessionStorage.getItem("apipathurl");
 
@@ -19,7 +21,7 @@ const ResetPasswordPage = () => {
     const handleResetPassword = async () => {
       if (!userId || !newPassword) {
         // Check if any field is vacant
-        alert('Please fill in all fields');
+        toast.error('Please fill in all fields');
         return;
       }
       try {
@@ -44,7 +46,7 @@ const ResetPasswordPage = () => {
     
         if (response.ok) {
           // Success message
-          alert('Password reset successfully');
+          toast.success('Password reset successfully');
     
           // Reset the fields
           setUserId('');
@@ -73,7 +75,8 @@ const ResetPasswordPage = () => {
           <input type="password" id="newPassword" value={newPassword} onChange={handleNewPasswordChange} />
         </div>
         <button onClick={handleResetPassword}>Reset Password</button>
-        <div>{message}</div>
+        {/* <div>{message}</div> */}
+        <ToastContainer className="toast-container" />
       </div>
     );
   };

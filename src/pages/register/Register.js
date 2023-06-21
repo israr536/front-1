@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './register.css';
 
 const baseURL = sessionStorage.getItem("apipathurl");
@@ -51,10 +53,10 @@ const Register = () => {
         setEmail('');
         setPassword('');
         setRole('');
-        alert('You are successfully registered');
+        toast.success('You are successfully registered');
       } else {
         // Registration failed
-        setRegisterMessage(`Registration failed: ${response.status}`);
+    toast.error(`Registration failed: ${response.status}`);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -64,6 +66,7 @@ const Register = () => {
   };
 
   return (
+   <div>
     <form onSubmit={handleSubmit} className="register-form">
       <h1>Register</h1>
       {registerMessage && <p>{registerMessage}</p>}
@@ -103,6 +106,8 @@ const Register = () => {
         <input type="submit" value="Submit" /> // Show the submit button when not loading
       )}
     </form>
+    <ToastContainer className="toast-container" />
+    </div>
   );
 };
 

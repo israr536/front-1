@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './post.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = sessionStorage.getItem("apipathurl");
 
@@ -117,34 +119,12 @@ const handleSubmit = (event) => {
     !ItemCategory ||
     !ItemDescription
   ) {
-    const fields = [
-      { value: senderName, message: 'Sender Name is required.' },
-      { value: senderAddress, message: 'Sender Address is required.' },
-      { value: senderCity, message: 'Sender city is required.' },
-      { value: senderState, message: 'Sender state is required.' },
-      { value: senderPostalCode, message: 'Sender code is required.' },
-      { value: senderMobilenumber, message: 'Sender mobileno is required.' },
-      { value: senderemail, message: 'Sender Email is required.' },
-      { value: receiverName, message: 'receiver Name is required.' },
-      { value: receiverAddress, message: 'receiver Address is required.' },
-      { value: receiverCity, message: 'receiver City is required.' },
-      { value: receiverState, message: 'receiver State is required.' },
-      { value: receiverPostalCode, message: 'receiver PostalCode is required.' },
-      { value: receiverMobilenumber, message: 'receiver Mobilenumber is required.' },
-      { value: receiveremail, message: 'receiver email is required.' },
-      { value: ItemCategory, message: 'item category is required.' },
-      { value: ItemDescription, message: 'item description is required.' },
-      
-    ];
-  
-    fields.forEach(field => {
-      if (!field.value) {
-        alert(field.message);
-      }
-    });
-  
+    toast.error('All fields are required');
     return;
   }
+  
+   
+  
 
   const formData = {
     senderName,
@@ -206,11 +186,11 @@ const handleSubmit = (event) => {
       setItemDescription('');
 
         // Show success message
-        alert('Form submitted successfully!');
+        toast.success('Form submitted successfully!');
     })
     .catch((error) => {
-      console.error('Error submitting the form', error);
-      setSubmitMessage('An error occurred. Please try again.');
+      toast.error('Error submitting the form', error);
+      // setSubmitMessage('An error occurred. Please try again.');
       // Handle the error or display an error message
     })
     .finally(() => {
@@ -361,6 +341,7 @@ const handleSubmit = (event) => {
             {isLoading && <div className="loader" >Loading...</div>} {/* Show loader if isLoading is true */}
             <div className="submit-message">{submitMessage}</div>
           </form>
+          <ToastContainer className="toast-container" />
         </div>
       </>
     );

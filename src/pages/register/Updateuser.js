@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import './updateuser.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = sessionStorage.getItem("apipathurl");
 
@@ -30,7 +32,7 @@ const UpdateUserForm = () => {
     const handleUpdateUser = async () => {
       if (!userId || !username || !email || !role) {
         // Check if any field is vacant
-        alert('Please fill in all fields');
+        toast.success('Please fill in all fields');
         return;
       }
       try {
@@ -54,7 +56,7 @@ const UpdateUserForm = () => {
     
         if (response.ok) {
           const data = await response.json();
-          alert('User updated successfully');
+          toast.success('User updated successfully');
           // setMessage(data.message);
     
           // Reset the fields
@@ -63,11 +65,11 @@ const UpdateUserForm = () => {
           setEmail('');
           setRole('');
         } else {
-          throw new Error('Request failed with status ' + response.status);
+          toast.error('Request failed with status ' + response.status);
         }
       } catch (error) {
-        console.error(error);
-        alert("user is not updated")
+        // toast.error(error);
+        toast.error("user is not updated");
         // setMessage('An error occurred');
       }
     };
@@ -91,13 +93,21 @@ const UpdateUserForm = () => {
         </div>
         <div>
           <label >Role:</label>
-          <input type="text" id="role" value={role} onChange={handleRoleChange} />
+        
+         <div className='drop'> 
+        <select name="role" value={role} onChange={handleRoleChange}>
+          <option value="select">Select Role</option>
+          <option value="admin">admin</option>
+          <option value="deliverypartner">deliverypartner</option>
+          <option value="agent">agent</option>
+        </select>
+        </div>
         </div>
         <div className="button">
         <button onClick={handleUpdateUser}>Update User</button>
         </div>
-        
-        <div>{message}</div>
+        <ToastContainer className="toast-container" />
+        {/* <div>{message}</div> */}
       </div>
     );
   };
