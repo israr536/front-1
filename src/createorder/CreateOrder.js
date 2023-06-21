@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useState,useEffect} from "react"; 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,9 +7,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from "react-router-dom";
 
+
+
 const baseURL = sessionStorage.getItem("apipathurl");
         
   const CreateOrder = () =>{
+    const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [orderID, setOrderID] = useState('');
     const [status, setStatus] = useState('');
@@ -24,6 +27,7 @@ const baseURL = sessionStorage.getItem("apipathurl");
     const [isLoading, setIsLoading] = useState(false);
     const [anchorEl, setAnchorEl] = useState('');
     const [userRole, setUserRole] = useState('');
+    // const [isLoading, setIsLoading] = useState(false);
     
 
 const open = Boolean(anchorEl);
@@ -128,6 +132,12 @@ const open = Boolean(anchorEl);
                setAddress('');
                setPincode('');
               alert('Form submitted successfully!');
+                 // Navigate to the appropriate page based on the user role
+          // if (userRole === 'admin') {
+          //   navigate('/admin');
+          // } else if (userRole === 'agent') {
+          //   navigate('/agent');
+          // }
             } else {
               console.error('Failed to create order:', data.message);
             }
@@ -161,7 +171,6 @@ const open = Boolean(anchorEl);
           style={{
             display: 'flex',
             justifyContent: 'center',
-          
           }}
         >
           <button
@@ -171,9 +180,9 @@ const open = Boolean(anchorEl);
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
           >
-            Create Order 
+            Create Order
           </button>
-
+  
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -184,8 +193,7 @@ const open = Boolean(anchorEl);
             }}
           >
             <div className="container">
-            <button onClick={() => setShowForm(true)}>Create Order</button>
-              {showForm && (
+              {showForm ? (
                 <form className="admin-form">
                   <div>
                     <label>Order ID:</label>
@@ -195,22 +203,22 @@ const open = Boolean(anchorEl);
                       onChange={(e) => setOrderID(e.target.value)}
                     />
                   </div>
-                 
-               <div>
-               <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className='delivery-status'
-          >
-            <option value="">Select Status</option>
-            {statusOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-               </div>
-                
+  
+                  <div>
+                    <select
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value)}
+                      className="delivery-status"
+                    >
+                      <option value="">Select Status</option>
+                      {statusOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+  
                   <div>
                     <label>Date:</label>
                     <DatePicker
@@ -219,14 +227,7 @@ const open = Boolean(anchorEl);
                       dateFormat="yyyy-MM-dd"
                     />
                   </div>
-                  {/* <div>
-                    <label>Time:</label>
-                    <input
-                      type="text"
-                      value={time}
-                      onChange={(e) => setTime(e.target.value)}
-                    />
-                  </div> */}
+  
                   <div>
                     <label>Location:</label>
                     <input
@@ -260,23 +261,24 @@ const open = Boolean(anchorEl);
                     />
                   </div>
                   <div>
-                    
-                  <Link to={userRole === 'admin' ? '/admin' : '/agent'}>
-                <button onClick={createOrder} style={{ marginRight: '10px' }}>
-                   Create Order
+                    <button
+                      onClick={createOrder}
+                      style={{ marginRight: '10px' }}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? 'Creating Order...' : 'Create Order'}
                     </button>
-                      </Link>
-
-                  
                     <button onClick={() => setShowForm(false)}>Cancel</button>
                   </div>
                   {successMessage && <p>{successMessage}</p>}
                 </form>
+              ) : (
+                <button onClick={handleCreateOrderClick}>Create Order</button>
               )}
             </div>
           </Menu>
         </div>
-        </div>
+      </div>
       );
 
 };

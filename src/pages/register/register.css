@@ -29,6 +29,39 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+/* label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+} */
+
+label select {
+  width: 320px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+label select:focus {
+  outline: none;
+  border-color: #7b9cdd;
+  box-shadow: 0 0 5px #7b9cdd;
+}
+
+/* .register-form input[type="role"]{
+  padding: 8px;
+ ole{
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width:300px;
+}
+ font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} */
 
 .register-form input[type="submit"] {
   padding: 10px 20px;

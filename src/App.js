@@ -72,22 +72,36 @@ const App = () => {
       navigate("/agent");
     }
   };
-  const location = useLocation();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  
+  //   // Rest of your form submission logic...
+  
+  //   // After the form submission, you can perform any necessary actions based on the user role
+  //   if (userRole === 'admin') {
+  //     navigate('/admin'); // Redirect to the admin route
+  //   } else if (userRole === 'deliverypartner') {
+  //     navigate('/delivery'); // Redirect to the delivery partner route
+  //   } else if (userRole === 'agent') {
+  //     navigate('/agent'); // Redirect to the agent route
+  //   }
+  // };
+  // const location = useLocation();
 
-  const handleOrderSubmit = () => {
-    // Logic for order submission
+  // const handleOrderSubmit = () => {
+  //   // Logic for order submission
 
-    if (location.pathname === '/agent') {
-      // Handle order submission for agent route
-      // ...
-    } else if (location.pathname === '/admin') {
-      // Handle order submission for admin route
-      // ...
-    }
+  //   if (location.pathname === '/agent') {
+  //     // Handle order submission for agent route
+  //     // ...
+  //   } else if (location.pathname === '/admin') {
+  //     // Handle order submission for admin route
+  //     // ...
+  //   }
 
-    // Redirect to the current route
-    navigate('/agent' || '/admin');
-  };
+  //   // Redirect to the current route
+  //   navigate('/agent' || '/admin');
+  // };
   // const handleLogout = () => {
   //   localStorage.removeItem('token');
   //   localStorage.removeItem('username');

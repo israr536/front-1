@@ -7,7 +7,6 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [designation, setDesignation] = useState('');
   const [role, setRole] = useState('');
   const [registerMessage, setRegisterMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -20,11 +19,7 @@ const Register = () => {
       setEmail(value);
     } else if (name === 'password') {
       setPassword(value);
-    }
-    // }  else if (name === 'designation') {
-    //   setPassword(value);
-    // } 
-    else if (name === 'role') {
+    } else if (name === 'role') {
       setRole(value);
     }
   };
@@ -32,7 +27,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!username || !email || !password ) {
+    if (!username || !email || !password) {
       // Display an alert if any field is left vacant
       alert('Please fill in all fields');
       return;
@@ -40,22 +35,13 @@ const Register = () => {
 
     try {
       setIsLoading(true); // Set loading state to true
-      //  const response = await fetch(`http://localhost:3000/api/user/register`,{
-       const response = await fetch(`${baseURL}/user/register`, {
+      const response = await fetch(`${baseURL}/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, email, password, role }),
       });
-
-      // const response = await fetch(`${baseURL}/user/register`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ username, email, password, role }),
-      // });
 
       if (response.ok) {
         // Registration successful
@@ -64,7 +50,6 @@ const Register = () => {
         setUsername('');
         setEmail('');
         setPassword('');
-        // setDesignation('');
         setRole('');
         alert('You are successfully registered');
       } else {
@@ -77,7 +62,6 @@ const Register = () => {
       setIsLoading(false); // Set loading state back to false after the request completes
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit} className="register-form">
@@ -99,24 +83,26 @@ const Register = () => {
         <input type="password" name="password" value={password} onChange={handleChange} />
       </label>
       <br />
-      {/* <label>
-        Designation:
-        <input type="text" name="designation" value={designation} onChange={handleChange} />
-      </label>
-      <br /> */}
+     
       <label>
         Role:
-        <input type="text" name="role" value={role} onChange={handleChange} />
+        {/* <div className='role'> */}
+        <select name="role" value={role} onChange={handleChange}>
+          <option value="select">Select Role</option>
+          <option value="admin">admin</option>
+          <option value="deliverypartner">deliverypartner</option>
+          <option value="agent">agent</option>
+        </select>
+        {/* </div> */}
       </label>
       <br />
+     
       {isLoading ? (
         <div>Loading...</div> // Display the loader while isLoading is true
       ) : (
         <input type="submit" value="Submit" /> // Show the submit button when not loading
       )}
     </form>
-
-   
   );
 };
 
