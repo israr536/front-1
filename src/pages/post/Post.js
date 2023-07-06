@@ -490,8 +490,8 @@ const Post = ({ senderData, receiverData, itemData, onBackToForm }) => {
     const postData = itemData; // Only include itemData, remove senderData and receiverData
     console.log(postData);
     try {
-      // const response = await fetch(`{baseURL}/post/createpost`, {
-      const response = await fetch('http://localhost:3000/api/post/createpost', {
+       const response = await fetch(`${baseURL}/post/createpost`, {
+      // const response = await fetch('http://localhost:3000/api/post/createpost', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

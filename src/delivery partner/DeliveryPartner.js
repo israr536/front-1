@@ -14,6 +14,9 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [userRole, setUserRole] = useState("");
 
+
+  
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
@@ -56,6 +59,8 @@ const OrderUpdate = () => {
   const [isLoading, setIsLoading] = useState(true); // Added missing state
   const navigate = useNavigate(); // Hook for navigation
 
+  // const baseURL = sessionStorage.getItem("apipathurl");
+
   const pageSize = 10;
   const onPageChange = (page) => {
     setCurrentPage(page);
@@ -75,7 +80,8 @@ const OrderUpdate = () => {
         second: "numeric",
       };
       const formattedDate = currentDate.toLocaleString("en-IN", options);
-      const response = await fetch("http://localhost:3000/api/post/update", {
+      const response = await fetch(`${baseURL}/post/update`, {
+      // const response = await fetch("http://localhost:3000/api/post/update", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -106,12 +112,12 @@ const OrderUpdate = () => {
 
   const fetchCustomerHistory = async () => {
     try {
-      // const response = await fetch(
-      //   `{baseURL}/post/postalhistory``
-      // );
       const response = await fetch(
-        "http://localhost:3000/api/post/postalhistory"
+        `${baseURL}/post/postalhistory`
       );
+      // const response = await fetch(
+      //   "http://localhost:3000/api/post/postalhistory"
+      // );
       const data = await response.json();
 
       const reversedCustomerHistory = data.reverse(); // Reverse the customer history array

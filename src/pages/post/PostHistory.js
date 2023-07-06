@@ -44,12 +44,12 @@ const CustomerHistory = () => {
 
   const fetchCustomerHistory = async () => {
     try {
-      // const response = await fetch(
-      //   `{baseURL}/post/postalhistory``
-      // );
       const response = await fetch(
-        "http://localhost:3000/api/post/postalhistory"
+        `${baseURL}/post/postalhistory`
       );
+      // const response = await fetch(
+      //   "http://localhost:3000/api/post/postalhistory"
+      // );
       const data = await response.json();
 
       const reversedCustomerHistory = data.reverse(); // Reverse the customer history array

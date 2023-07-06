@@ -36,8 +36,8 @@ const UpdateUserForm = () => {
         return;
       }
       try {
-        const response = await fetch('http://localhost:3000/api/user/update',{
-        // const response = await fetch(`${baseURL}/user/update`, {
+        // const response = await fetch('http://localhost:3000/api/user/update',{
+         const response = await fetch(`${baseURL}/user/update`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

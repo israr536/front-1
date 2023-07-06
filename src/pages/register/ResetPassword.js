@@ -25,8 +25,8 @@ const ResetPasswordPage = () => {
         return;
       }
       try {
-        const response = await fetch('http://localhost:3000/api/user/reset',{
-        // const response = await fetch(`${baseURL}/user/reset`, {
+        // const response = await fetch('http://localhost:3000/api/user/reset',{
+         const response = await fetch(`${baseURL}/user/reset`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

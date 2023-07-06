@@ -25,8 +25,8 @@ const UserList = () => {
 
   const fetchUserList = async () => {
     try {
-       const response = await fetch(`http://localhost:3000/api/user/getusers`);
-      //  const response = await fetch(`${baseURL}/user/getusers`);
+      //  const response = await fetch(`http://localhost:3000/api/user/getusers`);
+        const response = await fetch(`${baseURL}/user/getusers`);
       const data = await response.json();
   
       if (response.ok) {
@@ -44,8 +44,8 @@ const UserList = () => {
 
   const deleteUser = async (username) => {
     try {
-      // await fetch(`{baseURL}/user/${username}`, {
-      await fetch(`http://localhost:3000/api/user/${username}`, {
+       await fetch(`${baseURL}/user/${username}`, {
+      // await fetch(`http://localhost:3000/api/user/${username}`, {
         method: 'DELETE',
       });
       setTimeout(fetchUserList, 1000); // Fetch the updated user list after a delay of 1 second (1000 milliseconds)
