@@ -11,7 +11,7 @@ import './admin.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CustomerHistory from './post/PostHistory';
-import CreateOrder from '../createorder/CreateOrder';
+// import CreateOrder from '../createorder/CreateOrder';
 
 
 
@@ -59,35 +59,7 @@ const Header = () => {
     navigate('/login');
   };
 
-  // useEffect(() => {
-  //   fetchOrders();
-  // }, []);
-
-  // const fetchOrders = async () => {
-  //   try {
-  //     setIsLoading(true); // Set loading state to true
-  //     const response = await fetch(`http://localhost:3000/api/order/history`);
-  //     // const response = await fetch(`${baseURL}/order/history`);
-  //     const data = await response.json();
-
-  //     // Get the currently generated order
-  //     const currentOrder = data.orderHistory.find(order => order.status === 'Generated');
-
-  //     // Sort the orders based on the date in descending order, with the currently generated order at the top
-  //     const sortedOrders = data.orderHistory
-  //       .filter(order => order.status !== 'Generated') // Exclude the currently generated order from the sorting process
-  //       .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  //     // Prepend the currently generated order at the beginning of the sorted orders array
-  //     sortedOrders.unshift(currentOrder);
-
-  //     setOrders(sortedOrders);
-  //   } catch (error) {
-  //     console.error('Failed to fetch orders:', error);
-  //   } finally {
-  //     setIsLoading(false); // Set loading state back to false after fetching orders
-  //   }
-  // };
+ 
 
 
 
@@ -185,22 +157,22 @@ const Header = () => {
       <nav className="main-nav">
         <ul
         >
-          <li><Link to='/postalhistory'>Post List</Link></li>
+          <li><Link to='/postalhistory'>Order List</Link></li>
 
           {/* <li>
             <Link to='/list'>UserList</Link>
           </li> */}
           {/* <div onClick={handleCreateOrderClick}> */}
-            <li>
+            {/* <li>
               <Link to='/admin'>
                 <CreateOrder />
               </Link>
-            </li>
+            </li> */}
           {/* </div> */}
           <li
           >
             <Link to='/post'>
-              Post
+              Create Order
             </Link>
           </li>
           <li
@@ -413,231 +385,16 @@ const AdminPage = () => {
 
 
 
-  // useEffect(() => {
-  //   fetchOrders();
-  // }, []);
-
-  // const fetchOrders = async () => {
-  //   try {
-
-  //     setIsLoading(true); // Set loading state to true
-
-  //     const response = await fetch(`${baseURL}/order/history`);
-  //     const data = await response.json();
-  //     setOrders(data.orderHistory);
-  //   } catch (error) {
-  //     console.error('Failed to fetch orders:', error);
-  //   } finally {
-  //     setIsLoading(false); // Set loading state back to false after fetching orders
-  //   }
-  // };
-
-  // const createOrder = async () => {
-  //   try {
-  //     setIsLoading(true); // Set loading state to true
-
-  //     const response = await fetch(`${baseURL}/order/createorder`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         orderID,
-  //         status,
-  //         date,
-  //         time,
-  //         location,
-  //       }),
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       if (data.status === 201) {
-  //         fetchOrders();
-  //         setShowForm(false);
-  //         setOrderID('');
-  //         setStatus('');
-  //         setDate(null);
-  //         setTime('');
-  //         setLocation('');
-  //         setSuccessMessage('Order created successfully.');
-  //       } else {
-  //         console.error('Failed to create order:', data.message);
-  //       }
-  //     } else {
-  //       console.error('Failed to create order:', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to create order:', error);
-  //   } finally {
-  //     setIsLoading(false); // Set loading state back to false after creating order
-  //   }
-  // };
-
-  // ...
+  
 
   return (
     <>
       <Header />
 
-      <div className="admin" style={{ position: 'relative' }}>
-        <div className="button">
-
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              zIndex: '999',
-              position: 'absolute',
-              top: '0px',
-              width: '100%',
-              left: '0',
-              marginTop: '10px',
-            }}
-          >
-            {/* <button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
-            style={{ marginRight: '20px' }}
-          >
-            create 
-          </button> */}
-
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              <div className="container">
-                <button onClick={() => setShowForm(true)}>Create Order</button>
-                {showForm && (
-                  <form className="admin-form">
-                    <div>
-                      <label>Order ID:</label>
-                      <input
-                        type="text"
-                        value={orderID}
-                        onChange={(e) => setOrderID(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label>Status:</label>
-                      <input
-                        type="text"
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label>Date:</label>
-                      <DatePicker
-                        selected={date}
-                        onChange={(selectedDate) => setDate(selectedDate)}
-                        dateFormat="yyyy-MM-dd"
-                      />
-                    </div>
-                    <div>
-                      <label>Time:</label>
-                      <input
-                        type="text"
-                        value={time}
-                        onChange={(e) => setTime(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label>Location && Mobile Number:</label>
-                      <input
-                        type="text"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                      />
-                    </div>
-                    <div>
-
-                      <Link to='/admin'> <button
-
-                        style={{ marginRight: '10px' }}
-                      >
-                        Create Order
-                      </button></Link>
-
-                      <button onClick={() => setShowForm(false)}>Cancel</button>
-                    </div>
-                    {successMessage && <p>{successMessage}</p>}
-                  </form>
-                )}
-              </div>
-
-              {/* <MenuItem>
-    <Link to="/post">
-      <button>Post</button>
-    </Link>
-  </MenuItem>
-  <MenuItem>
-    <Link to="/register">
-      <button>Add user</button>
-    </Link>
-  </MenuItem> */}
-              {/* <MenuItem>
-    <Link to="/login">
-      {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
-    </Link>
-  </MenuItem>  */}
-            </Menu>
-          </div>
-        </div>
-      </div>
+     
       <Slider />
 
-      <div className="container">
-        <h1>Orders Details</h1>
-        {isLoading ? (
-          <div>Loading...</div> // Display the loader while isLoading is true
-        ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>OrderID</th>
-                <th>Status</th>
-                <th>Date</th>
-                {/* <th>Time</th> */}
-                <th>Location</th>
-                <th> Receiver Mobile Number</th>
-                <th>Receiver Address</th>
-                <th>Receiver Pincode</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedOrders.map((order) => (
-                <tr key={order._id}>
-                  <td>{order.orderID}</td>
-                  <td>{order.status}</td>
-                  <td>{order.date}</td>
-                  {/* <td>{order.time}</td> */}
-                  <td>{order.location}</td>
-                  <td>{order.mobilenumber}</td>
-                  <td>{order.address}</td>
-                  <td>{order.pincode}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-
-      <Pagination
-        items={orders.length}
-        currentPage={currentPage}
-        pageSize={pageSize}
-        onPageChange={onPageChange}
-      />
+    
 
     </>
 

@@ -7,15 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 const baseURL = sessionStorage.getItem("apipathurl");
 
 const UpdateUserForm = () => {
-    const [userId, setUserId] = useState('');
+    // const [userId, setUserId] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
     const [message, setMessage] = useState('');
   
-    const handleUserIdChange = (e) => {
-      setUserId(e.target.value);
-    };
+    // const handleUserIdChange = (e) => {
+    //   setUserId(e.target.value);
+    // };
   
     const handleUsernameChange = (e) => {
       setUsername(e.target.value);
@@ -30,18 +30,19 @@ const UpdateUserForm = () => {
     };
   
     const handleUpdateUser = async () => {
-      if (!userId || !username || !email || !role) {
+      if (  !username || !email || !role) {
         // Check if any field is vacant
         toast.success('Please fill in all fields');
         return;
       }
       try {
-        const response = await fetch(`${baseURL}/user/update`, {
+        const response = await fetch('http://localhost:3000/api/user/update',{
+        // const response = await fetch(`${baseURL}/user/update`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ userId, username, email, role }),
+          body: JSON.stringify({  username, email, role }),
         });
     
     
@@ -60,7 +61,7 @@ const UpdateUserForm = () => {
           // setMessage(data.message);
     
           // Reset the fields
-          setUserId('');
+          // setUserId('');
           setUsername('');
           setEmail('');
           setRole('');
@@ -78,14 +79,14 @@ const UpdateUserForm = () => {
   
     return (
       <div className='update-form'>
-        <h1>Update User</h1>
-        <div>
+        <h1 className="hii">Update User</h1>
+        {/* <div>
           <label>User ID:</label>
           <input type="text" id="userId" value={userId} onChange={handleUserIdChange} />
-        </div>
+        </div> */}
         <div>
-          <label >Username:</label>
-          <input type="text" id="username" value={username} onChange={handleUsernameChange} />
+          <label >UserID:</label>
+          <input type="text" id="username" value={username} onChange={handleUsernameChange} maxLength={8} />
         </div>
         <div>
           <label >Email:</label>

@@ -6,36 +6,31 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    /* border: 1px solid red; */
   }
   
   /* Form styles */
   form {
-    display: flex;
-    /* flex-direction: column; */
-    align-items: flex-start;
-    margin-top: 20px;
+ 
+    margin: 20px auto;
+    /* border:1px solid red; */
+    padding:0;
+    width:100%;
   }
 
   .post-form{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
     /* border:1px solid red; */
     /* width:max-content; */
-    max-width:650px;
+    max-width:400px;
 
-    justify-content: center;
     margin:0 auto;
   }
 
-  .post-form .common-fields {
-    display: flex;
-    /* width:100%; */
-    justify-content: space-between;
-  }
 
 
-  .post-form fieldset{
+
+
+  /* .post-form fieldset{
       padding:0 !important;
       border:1px solid transparent;
 
@@ -43,9 +38,9 @@
 
   .post-form fieldset legend{
     font-size:21px !important;
-  }
+  } */
 
-  .sender{
+  /* .sender{
     margin-right:30px;
   }
 
@@ -66,8 +61,8 @@
   }
   .post-form .submit-button:hover{
     background-color: black;
-  }
-  
+  } */
+/*   
   .delivery-status{
     width: 317px !important;
   padding: 0.5rem;
@@ -78,42 +73,84 @@
   border:1px solid #ccc !important;
 
 
-}
-  h1 {
+} */
+/* .post-form h1 {
     text-align: center;
     margin: 10px;
     margin-bottom: 20px;
     font-size: 20px;
   }
-  
-  h2 {
+   */
+  .post-form h2 {
     margin: 20px 0;
-    font-size:50px;
+    font-size:20px;
+    /* text-align: left; */
   }
   
-  label {
+  .post-form label {
 
     display: block;
     color: black;
+    margin-top:10px;
   }
   
-  input[type='text'] {
-    width: 300px;
+  .post-form  input {
+    width: 100%; 
+    border:1px solid #333;
+    display: block;
     padding: 5px;
     margin-top: 5px;
-    border-radius: 2px solid black;
+    border-radius: 3px;
+  }
+/* 
+  .post-form select{
+    width:calc(100% + 10px);
+    padding:5px;
+
+  } */
+  .th{
+    text-align: center;
+  }
+
+   .rece {
+    display: flex;
+    justify-content: center;
+   }
+  .rece button{
+    margin-right: 20px;
+    text-align: center;
+    margin-top: 10px;
+    /* border: 1px solid red; */
   }
   
-  button {
+  .post-form button {
     margin-top: 20px;
-    padding: 10px;
+
+    padding: 10px 50px;
     background-color:rgb(22, 20, 20);
     color: white;
     border: none;
+    text-align: center;
+    border-radius: 6px;
     cursor: pointer;
   }
   
-  button:hover {
+  .post-form  button:hover {
     background-color:rgb(21, 20, 20);
   }
-  
+  .info{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+  }
+  .toast{
+    text-align: center;
+  }
+
+  /* react select component specific styles */
+
+  .css-b62m3t-container{
+    border:1px solid #333;
+    width:calc(100% + 10px);
+    border-radius: 3px;
+  }

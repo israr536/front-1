@@ -2,12 +2,27 @@
     width:90%;
     margin:40px auto;
     overflow:auto;
+    text-align:center;
+}
+.button-nav{
+    display:flex;
+    justify-content: space-between;
+    margin:20px 0;
+    width:max-content;
 }
 
+.button-nav button{
+    margin: 0 10px;
+}
+.postalhistory::button {
+    margin: 10px;
+}
 .postalhistory::-webkit-scrollbar{
     width:0px;
 }
-
+.postalhistory::button{
+    margin: 10px;
+}
 .pagination{
     margin:10px 0;
 }

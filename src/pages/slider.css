@@ -53,6 +53,9 @@
     margin: 20px 0;
   } */
   
+  .order-tracking-history{
+    margin: 0 auto;
+  }
   .order-tracking-history h2 {
     font-size: 12px;
     margin-bottom: 10px;
@@ -63,6 +66,7 @@
     border-collapse: collapse;
     width: 100%;
     border-radius: 10px;
+    margin: 0 auto;
   }
   
   .order-tracking-history th {
@@ -87,7 +91,7 @@
     background-color: #ddd;
   }
   .order-tracking-history{
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
   }
   .cancel-span {
      display: flex; 

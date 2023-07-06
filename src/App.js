@@ -8,7 +8,7 @@ import AdminPage from './pages/Admin';
 import Post from './pages/post/Post';
 import OrderUpdate from '../src/delivery partner/DeliveryPartner';
 import CustomerHistory from './pages/post/PostHistory';
-import CreateOrder from './createorder/CreateOrder';
+// import CreateOrder from './createorder/CreateOrder';
 import UserList from './userslist/UserList';
 import ResetPasswordPage from './pages/register/ResetPassword';
 import UpdateUserForm from './pages/register/Updateuser';
@@ -126,7 +126,7 @@ const App = () => {
           {isLoggedIn && userRole === "admin" && <Route path="/admin" element={<AdminPage />} />}
           {isLoggedIn &&(userRole === "agent" || userRole === "admin") && <Route path="/list" element={<UserList />} />}
           {isLoggedIn && (userRole === "agent" || userRole === "admin") && <Route path="/post" element={<Post />} />}
-          {isLoggedIn && (userRole === "agent" || userRole === "admin")  && <Route path="/admin" element={<CreateOrder />} />}
+          {/* {isLoggedIn && (userRole === "agent" || userRole === "admin")  && <Route path="/admin" element={<CreateOrder />} />} */}
          {isLoggedIn && userRole === "admin"&& <Route path="/postalhistory" element={<CustomerHistory/>}/>}
           {isLoggedIn && userRole === "deliverypartner" && <Route path="/delivery" element={<OrderUpdate />} />}
           {isLoggedIn && (userRole === "agent" || userRole === "admin")  && <Route path="/reset" element={<ResetPasswordPage />} />}

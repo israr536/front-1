@@ -5,8 +5,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  border-radius: 10px;
-  margin-top: 20px;
+  /* border-radius: 10px; */
+  /* margin-top: 20px; */
 }
 
 .logo {

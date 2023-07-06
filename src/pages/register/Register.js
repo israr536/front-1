@@ -31,13 +31,22 @@ const Register = () => {
 
     if (!username || !email || !password) {
       // Display an alert if any field is left vacant
-      alert('Please fill in all fields');
+      toast.error('Please fill in all fields');
+      return;
+    }
+    if(username.length !==8){
+      toast.error('userid must be in 6 characters');
+      return;
+    }
+    if(password.length !==8){
+      toast.error('password must be in 8 characters');
       return;
     }
 
     try {
       setIsLoading(true); // Set loading state to true
-      const response = await fetch(`${baseURL}/user/register`, {
+      const response = await fetch('http://localhost:3000/api/user/register',{
+      // const response = await fetch(`${baseURL}/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,11 +78,11 @@ const Register = () => {
    <div>
     <form onSubmit={handleSubmit} className="register-form">
       <h1>Register</h1>
-      {registerMessage && <p>{registerMessage}</p>}
+      {/* {registerMessage && <p>{registerMessage}</p>} */}
       <label>
         <br />
-        Username:
-        <input type="text" name="username" value={username} onChange={handleChange} />
+        UserID:
+        <input type="text" name="username" value={username} onChange={handleChange} maxLength={8}  />
       </label>
       <br />
       <label>
@@ -83,7 +92,7 @@ const Register = () => {
       <br />
       <label>
         Password:
-        <input type="password" name="password" value={password} onChange={handleChange} />
+        <input type="password" name="password" value={password} onChange={handleChange} maxLength={8} />
       </label>
       <br />
      

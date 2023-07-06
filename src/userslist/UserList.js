@@ -25,8 +25,8 @@ const UserList = () => {
 
   const fetchUserList = async () => {
     try {
-      // const response = await fetch(`http://localhost:3000/api/user/getusers`);
-       const response = await fetch(`${baseURL}/user/getusers`);
+       const response = await fetch(`http://localhost:3000/api/user/getusers`);
+      //  const response = await fetch(`${baseURL}/user/getusers`);
       const data = await response.json();
   
       if (response.ok) {
@@ -42,24 +42,26 @@ const UserList = () => {
     }
   };
 
-  const deleteUser = async (userId) => {
+  const deleteUser = async (username) => {
     try {
-      await fetch(`${baseURL}/user/${userId}`, {
+      // await fetch(`{baseURL}/user/${username}`, {
+      await fetch(`http://localhost:3000/api/user/${username}`, {
         method: 'DELETE',
       });
-      fetchUserList(); // Fetch the updated user list after deletion
+      setTimeout(fetchUserList, 1000); // Fetch the updated user list after a delay of 1 second (1000 milliseconds)
     } catch (error) {
       console.error(error);
     }
   };
+  
 
-  const updateUser = (userId) => {
-    console.log(`Update user with ID: ${userId}`);
+  const updateUser = (username) => {
+    console.log(`Update user with ID: ${username}`);
     navigate('/update'); // Use navigate to navigate to the /register route
   };
 
-  const resetPassword = (userId) => {
-    console.log(`Reset password for user with ID: ${userId}`);
+  const resetPassword = (username) => {
+    console.log(`Reset password for user with ID: ${username}`);
     navigate('/reset'); // Use navigate to navigate to the /register route
   };
 
@@ -73,8 +75,8 @@ const UserList = () => {
           <table>
             <thead>
               <tr>
-                <th>User ID</th>
-                <th>Username</th>
+                <th>UserID</th>
+                {/* <th>Username</th> */}
                 <th>Email</th>
                 <th>Role</th>
                 <th>Action</th>
@@ -83,14 +85,14 @@ const UserList = () => {
             <tbody>
               {paginatedUser.map(user => (
                 <tr key={user._id}>
-                  <td>{user._id}</td>
                   <td>{user.username}</td>
+                  {/* <td>{user.username}</td> */}
                   <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>
-                    <button onClick={() => deleteUser(user._id)}>Delete</button>
-                    <button onClick={() => updateUser(user._id)}>Update</button>
-                    <button onClick={() => resetPassword(user._id)}>Reset Password</button>
+                    <button onClick={() => deleteUser(user.username)}>Delete</button>
+                    <button onClick={() => updateUser(user.username)}>Update</button>
+                    <button onClick={() => resetPassword(user.username)}>Reset Password</button>
                   </td>
                 </tr>
               ))}

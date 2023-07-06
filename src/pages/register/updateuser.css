@@ -1,6 +1,6 @@
 
 .update-form{
-    margin:0 auto;
+    margin:50px auto;
     max-width:300px;
 }
 
@@ -14,7 +14,7 @@
     padding:0;
     padding:10px;
     margin-top:10px;
-    border-radius:10px;
+    border-radius:5px;
 }
 .drop {
     width: 100%;
@@ -26,7 +26,7 @@
     padding:0;
     padding:10px;
     margin-top:10px;
-    border-radius:10px;
+    border-radius:5px;
   }
 .drop select{
     width: 100%;
@@ -38,7 +38,9 @@
 .update-form  label{
     margin-top:10px;
 }
-
+.update-form .hii{
+    text-align: center;
+}
 .update-form  div.button{
     text-align: center;
     width:100%;

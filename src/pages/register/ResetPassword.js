@@ -7,30 +7,31 @@ import 'react-toastify/dist/ReactToastify.css';
 const baseURL = sessionStorage.getItem("apipathurl");
 
 const ResetPasswordPage = () => {
-    const [userId, setUserId] = useState('');
+    const [username, setUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
   
-    const handleUserIdChange = (e) => {
-      setUserId(e.target.value);
+    const handleUsernameChange = (e) => {
+      setUsername(e.target.value);
     };
   
     const handleNewPasswordChange = (e) => {
       setNewPassword(e.target.value);
     };
     const handleResetPassword = async () => {
-      if (!userId || !newPassword) {
+      if (!username || !newPassword) {
         // Check if any field is vacant
         toast.error('Please fill in all fields');
         return;
       }
       try {
-        const response = await fetch(`${baseURL}/user/reset`, {
+        const response = await fetch('http://localhost:3000/api/user/reset',{
+        // const response = await fetch(`${baseURL}/user/reset`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ userId, newPassword }),
+          body: JSON.stringify({ username, newPassword }),
         });
     
       // try {
@@ -49,32 +50,35 @@ const ResetPasswordPage = () => {
           toast.success('Password reset successfully');
     
           // Reset the fields
-          setUserId('');
+          setUsername('');
           setNewPassword('');
         } else {
           // Error message from the server
-          alert(data.message || 'An error occurred');
+          toast.error(data.message || 'An error occurred');
         }
       } catch (error) {
         console.error(error);
         // Error message for unexpected errors
-        alert('An error occurred');
+        toast.error('An error occurred');
       }
     };
     
     
     return (
       <div className="container reset-form">
-        <h1>Reset Password</h1>
+        <h1 >Reset Password</h1>
         <div>
-          <label >User ID:</label>
-          <input type="text" id="userId" value={userId} onChange={handleUserIdChange} />
+          <label >UserID:</label>
+          <input type="text" id="userId" value={username} onChange={handleUsernameChange} maxLength={8}/>
         </div>
         <div>
           <label>New Password:</label>
-          <input type="password" id="newPassword" value={newPassword} onChange={handleNewPasswordChange} />
+          <input type="password" id="newPassword" value={newPassword} onChange={handleNewPasswordChange} maxLength={8} />
         </div>
+        <div className='btn'>
         <button onClick={handleResetPassword}>Reset Password</button>
+        </div>
+       
         {/* <div>{message}</div> */}
         <ToastContainer className="toast-container" />
       </div>
